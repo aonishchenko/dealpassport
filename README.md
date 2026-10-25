@@ -83,4 +83,4 @@ The baseline pairing verifier and Gnark fixtures reuse Stellar Development Found
 
 New event work includes the eligibility circuit, account binding, root/deal policy, serialization boundary, verification scripts and tests. ChatGPT assisted research/specification. Codex assists coding, debugging, verification and artifact preparation. Oleksiy owns product decisions, review, corrections and submission.
 
-The pitch deck and submission draft remain under `output/presentation/` and `docs/`. Update implementation-dependent claims against these evidence files before submitting.
+The current pitch deck is `output/presentation/Deal_Passport_HackMeridian_Pitch_v2.pptx`. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md). Update implementation-dependent claims against the evidence files before submitting.

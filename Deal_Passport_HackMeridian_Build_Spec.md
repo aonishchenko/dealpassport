@@ -134,7 +134,7 @@ Application:
 ## 8. Submission package and the supplied pitch template
 Pitch template sections: The Solution, PMF, Technical Workflow, The Team.
 - **Solution:** "Two anonymous strangers prove they're qualified for the same deal without exchanging private evidence." Visual of two passport cards -> deal room.
-- **PMF:** Off-market property trust friction, Portugal 2025 approximately 169,812 home sales / €41.2B transaction value (all home sales, not TAM). Paid buyers: licensed intermediaries, off-market property platforms, developers. Hypothesis €49–€299/month for pilots plus per-verification fees; explicitly unvalidated, not revenue achieved.
+- **PMF:** Off-market property trust friction, Portugal 2025 approximately 169,812 home sales / €41.2B transaction value (all home sales, not TAM). Paid buyers: licensed intermediaries, off-market property platforms, developers. Hypothesis €89/month for pilots or per-verification fees; explicitly unvalidated, not revenue achieved.
 - **Technical Workflow:** External/synthetic attestor -> issuer-backed commitment -> private Circom proof -> Soroban BN254 verifier/DealGate -> private room consent. Show contract/transaction identifiers.
 - **Team:** Actual roles and skill alignment, source ownership, who built what in the hack. No invented biography or photos.
 

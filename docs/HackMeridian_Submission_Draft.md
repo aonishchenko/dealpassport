@@ -2,7 +2,7 @@
 
 Prepared on 25 October 2026 for EasyAI and Oleksiy Onishchenko.
 
-**Working draft for the intended MVP.** The implementation-dependent text below describes the target product. It must be reconciled with the working application and evidence before submission. The application, circuits, contracts, live demo and acceptance tests have not been implemented at the time this draft was prepared. Oleksiy will review, correct and submit the final materials.
+**Working draft for the intended MVP.** The implementation-dependent text below describes the target product. It must be reconciled with the working application and evidence before submission. Verified update: the buyer eligibility circuit, BN254 verifier and issuer/deal policy now work on Testnet, with seven local tests and receipts in docs/evidence/. The seller claim, backend, interface, live demo and video remain to build. Oleksiy will review, correct and submit the final materials.
 
 Deadline supplied by the organizer: **26 October 2026, 12:00 WET / Lisbon local time**.
 
@@ -60,7 +60,7 @@ Before submission, replace this prospective account with the actual challenges e
 
 ## What's next
 
-Validate the workflow with a Portuguese licensed broker or off-market platform, measuring repeated document requests and qualification time. Test the unvalidated pricing hypothesis of €49–€299/month plus verification fees.
+Validate the workflow with a Portuguese licensed broker or off-market platform, measuring repeated document requests and qualification time. Test the unvalidated pricing hypothesis of €89/month or per-verification fees.
 
 Evaluate qualified financial and property attestors, issuer governance and revocation procedures. Review cryptography, key handling and privacy before considering real data. Develop an integration API for existing platforms and assess Empiro as a possible integration context. No pilot, integration or partnership is claimed as secured.
 
@@ -68,7 +68,7 @@ Evaluate qualified financial and property attestors, issuer governance and revoc
 
 https://github.com/aonishchenko/dealpassport
 
-The repository is public. It currently contains its initial license commit. Source, setup instructions, tests and the event build log must be published as the MVP is built.
+The repository is public. Commit 45f815d contains the verified buyer circuit, contracts, tests and Testnet evidence. Continue publishing completed work, setup instructions and event build-log updates as the MVP is built.
 
 ## Project website link
 
@@ -82,9 +82,9 @@ Pending a working MVP recording and publication to **YouTube or Vimeo**. A local
 
 ## Deck file
 
-`output/presentation/Deal_Passport_HackMeridian_Pitch_MVP_Target.pptx`
+`output/presentation/Deal_Passport_HackMeridian_Pitch_v2.pptx`
 
-Five slides following the supplied template: cover, The Solution, PMF, Technical Workflow and The Team. Current slides identify implementation-dependent behavior as an MVP target. Finalize those labels and notes only after verified build results support the claims. The upload must remain below 20 MiB.
+Six slides following the supplied template: cover, The Solution, PMF, a market/competitor comparison continuing Step 02, Technical Workflow and The Team. Current slides identify implementation-dependent behavior as an MVP target. Finalize those labels and notes only after verified build results support the claims. The upload must remain below 20 MiB.
 
 ## Builder track
 
