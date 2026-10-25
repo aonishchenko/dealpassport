@@ -1,0 +1,21 @@
+# Local build and validation artifacts
+.deck-build/
+.codex-finalizer/
+.wrangler/
+node_modules/
+dist/
+target/
+.DS_Store
+.build/
+.toolchain/
+.local/
+.stellar/
+artifacts/private/
+
+# Credentials and private source material
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+Oleksiy_Onishchenko_AI_EM_CV.pdf

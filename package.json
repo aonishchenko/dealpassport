@@ -1,0 +1,26 @@
+{
+  "name": "dealpassport",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Issuer-bound private deal qualification on Stellar Testnet",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "build:contracts": "sh scripts/build-contracts.sh",
+    "setup:circuit": "node scripts/setup-circuit.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "verify:testnet:baseline": "node scripts/gate-a.mjs",
+    "verify:testnet:eligibility": "node scripts/gate-b.mjs"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "17.4.0",
+    "circomlibjs": "0.1.7",
+    "snarkjs": "0.7.6"
+  },
+  "devDependencies": {
+    "circom2": "0.2.23",
+    "circomlib": "2.0.5"
+  }
+}

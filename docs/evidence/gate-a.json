@@ -1,0 +1,70 @@
+{
+  "gate": "A",
+  "network": "Stellar Testnet",
+  "rpc": "https://soroban-testnet.stellar.org",
+  "recordedAt": "2026-10-25T23:09:53.007Z",
+  "contractId": "CAIS42T3EWMLDN3PUW2AWXRQMKKHPB5W7DWUHUODD7C6WHEUEMJBQGKX",
+  "upload": {
+    "label": "baseline Groth16 verifier: upload",
+    "hash": "579127c2645056feeb11370ac1734994baa192e68b055ff5fc7fa90a3a4321b3",
+    "ledger": 5389238,
+    "explorer": "https://stellar.expert/explorer/testnet/tx/579127c2645056feeb11370ac1734994baa192e68b055ff5fc7fa90a3a4321b3",
+    "value": {
+      "0": 44,
+      "1": 77,
+      "2": 179,
+      "3": 227,
+      "4": 84,
+      "5": 253,
+      "6": 17,
+      "7": 105,
+      "8": 142,
+      "9": 180,
+      "10": 68,
+      "11": 215,
+      "12": 152,
+      "13": 234,
+      "14": 121,
+      "15": 148,
+      "16": 31,
+      "17": 147,
+      "18": 13,
+      "19": 253,
+      "20": 141,
+      "21": 167,
+      "22": 148,
+      "23": 169,
+      "24": 228,
+      "25": 247,
+      "26": 144,
+      "27": 204,
+      "28": 54,
+      "29": 217,
+      "30": 195,
+      "31": 30
+    }
+  },
+  "deployment": {
+    "label": "baseline Groth16 verifier: deploy",
+    "hash": "09efc8564fb167384cb96e046362dc0e74053af087f6c79f8c6e315f081caf37",
+    "ledger": 5389239,
+    "explorer": "https://stellar.expert/explorer/testnet/tx/09efc8564fb167384cb96e046362dc0e74053af087f6c79f8c6e315f081caf37",
+    "value": "CAIS42T3EWMLDN3PUW2AWXRQMKKHPB5W7DWUHUODD7C6WHEUEMJBQGKX"
+  },
+  "fixtureSource": "stellar/soroban-examples@03d42aa6b973dcf3a453a99d0c6a6e8d25a196e2",
+  "valid": {
+    "label": "Gate A: valid Gnark proof",
+    "hash": "c7f8e7291b50c6d08fad38d472251c2f9241d2ca25c175ce26f3dc7020971038",
+    "ledger": 5389240,
+    "explorer": "https://stellar.expert/explorer/testnet/tx/c7f8e7291b50c6d08fad38d472251c2f9241d2ca25c175ce26f3dc7020971038",
+    "value": true
+  },
+  "tampered": {
+    "label": "Gate A: tampered public input",
+    "hash": "72697c646c7b43d339b6dc458b90a1e4209bfde059aba3a0d058917a747e8f91",
+    "ledger": 5389241,
+    "explorer": "https://stellar.expert/explorer/testnet/tx/72697c646c7b43d339b6dc458b90a1e4209bfde059aba3a0d058917a747e8f91",
+    "value": false
+  },
+  "limitation": "Educational stateless verifier accepts a caller-provided key. This baseline alone does not establish issuer-backed financial eligibility."
+}
