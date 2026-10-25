@@ -22,5 +22,9 @@
   "devDependencies": {
     "circom2": "0.2.23",
     "circomlib": "2.0.5"
+  },
+  "overrides": {
+    "ws": "^8.21.0",
+    "underscore": "^1.13.8"
   }
 }

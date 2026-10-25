@@ -12,5 +12,7 @@
 - Seven local tests passed, covering real proof generation/verification, randomized-proof nullifier stability, underfunded/expired/fabricated credentials, Merkle path constraints, numeric ranges and proof encoding. Expected witness-constraint errors are rejection evidence.
 - At Oleksiy's request, commit/push each verified milestone to origin. The first cryptographic milestone is commit `45f815d`.
 - Updated the pitch to six slides: €89/month or per-verification fees on PMF, then a native editable competitor comparison continuing Step 02. Checked published RealOpen, IntegraLayer and MERKAO offers and labeled adoption data as vendor-reported. The deck also records the completed buyer proof and distinguishes the remaining seller/disclosure work.
+- The verified deck and pricing/market context were pushed in commit `da68702`.
+- Patched transitive WebSocket and Underscore dependencies without forced major changes. The audit now reports no critical, high or moderate findings and 15 low findings. Recompiled the circuit against its preserved matching setup and reran all seven local tests successfully. Added a mismatch guard so a changed circuit cannot silently reuse the previous proving key, and verified that mismatched metadata is rejected. See `docs/evidence/local-checks.json`.
 
 AI assistance: ChatGPT supported idea research and the specification. Codex performs repository setup, implementation, debugging, testing and preparation of presentation/submission artifacts. Oleksiy owns product decisions, review, corrections and final submission.

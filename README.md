@@ -75,6 +75,8 @@ The account, public threshold, deal identifier, roots, nullifier and proof are p
 
 The issuer is synthetic. ZK does not establish bank provenance without a genuine evidence issuer. The demo setup and educational verifier are unaudited and unsuitable for production claims. Nothing here guarantees available financing, reserves funds or proves legal title.
 
+The dependency checkpoint resolved all reported high/moderate advisories with compatible transitive patches. Fifteen low-severity transitive advisories remain. See [local verification record](docs/evidence/local-checks.json). This is a demo toolchain, not a production security assessment.
+
 ## Origins and event work
 
 Oleksiy confirmed no pre-event Deal Passport code, design or asset, and no Empiro code or asset reuse. Existing professional products appear only as team experience and possible future integration context.

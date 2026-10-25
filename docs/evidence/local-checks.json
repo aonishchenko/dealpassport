@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-25T23:27:12.105Z",
+  "tests": {
+    "passed": 7,
+    "failed": 0,
+    "command": "npm test"
+  },
+  "circuit": {
+    "nonlinearConstraints": 2085,
+    "linearConstraints": 2168,
+    "publicInputs": 6,
+    "publicOutputs": 2
+  },
+  "setupManifestMismatch": "rejected",
+  "npmAudit": {
+    "info": 0,
+    "low": 15,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 15
+  },
+  "notes": "Remaining advisories are low severity transitive dependencies. This remains an unaudited synthetic demo with a single-party setup."
+}
