@@ -16,3 +16,8 @@
 - Patched transitive WebSocket and Underscore dependencies without forced major changes. The audit now reports no critical, high or moderate findings and 15 low findings. Recompiled the circuit against its preserved matching setup and reran all seven local tests successfully. Added a mismatch guard so a changed circuit cannot silently reuse the previous proving key, and verified that mismatched metadata is rejected. See `docs/evidence/local-checks.json`.
 
 AI assistance: ChatGPT supported idea research and the specification. Codex performs repository setup, implementation, debugging, testing and preparation of presentation/submission artifacts. Oleksiy owns product decisions, review, corrections and final submission.
+
+## Mutual qualification checkpoint
+
+- Gate C passed on Stellar Testnet: deployed DealGate with a pinned financial gate and property issuer. A property-specific `AUTHORIZED_TO_MARKET` attestation and a genuine buyer proof remained locked until both account-authenticated consents were present. Withdrawal and property revocation immediately locked a fresh status read. Rejected a forged issuer, wrong claim, expired attestation and premature consent. Public receipts: `docs/evidence/gate-c.json`.
+- On 25 October, Oleksiy requested Empiro's light palette and visual style as the UI reference: warm paper, stone, olive, square corners, Inter/Lora and editorial rules. Deal Passport's implementation is written for this event; this later design-reference request supersedes the earlier plan to use no Empiro reference. No Empiro application code, logo, photographs or customer data is imported.

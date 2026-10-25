@@ -1,6 +1,6 @@
 [workspace]
 resolver = "2"
-members = ["contracts/groth16-verifier", "contracts/eligibility-gate"]
+members = ["contracts/groth16-verifier", "contracts/eligibility-gate", "contracts/deal-gate"]
 
 [workspace.dependencies]
 soroban-sdk = "28"

@@ -1,0 +1,170 @@
+{
+  "gate": "C",
+  "network": "Stellar Testnet",
+  "recordedAt": "2026-10-25T23:55:07.380Z",
+  "contractId": "CCJYMPW6AIZNIR3ACK6IK2MMLDTLVGPJL2OHSKGZMYM3YWBDYYFGKKKZ",
+  "upload": {
+    "label": "mutual DealGate: upload",
+    "hash": "ee9ae1ef828c90d63c407795120ab64d1933e6218993db1bf7da321b1fe2e725",
+    "ledger": 5389767,
+    "explorer": "https://stellar.expert/explorer/testnet/tx/ee9ae1ef828c90d63c407795120ab64d1933e6218993db1bf7da321b1fe2e725",
+    "value": {
+      "0": 8,
+      "1": 129,
+      "2": 139,
+      "3": 90,
+      "4": 35,
+      "5": 121,
+      "6": 31,
+      "7": 35,
+      "8": 37,
+      "9": 35,
+      "10": 72,
+      "11": 54,
+      "12": 78,
+      "13": 40,
+      "14": 5,
+      "15": 26,
+      "16": 90,
+      "17": 215,
+      "18": 143,
+      "19": 245,
+      "20": 255,
+      "21": 99,
+      "22": 7,
+      "23": 128,
+      "24": 22,
+      "25": 160,
+      "26": 96,
+      "27": 78,
+      "28": 94,
+      "29": 123,
+      "30": 110,
+      "31": 254
+    }
+  },
+  "deployment": {
+    "label": "mutual DealGate: deploy",
+    "hash": "3288d7a5a62900e94f8786d2f644ba3b07acfd4f9ae1749d5ba6a51bb4b587ec",
+    "ledger": 5389768,
+    "explorer": "https://stellar.expert/explorer/testnet/tx/3288d7a5a62900e94f8786d2f644ba3b07acfd4f9ae1749d5ba6a51bb4b587ec",
+    "value": "CCJYMPW6AIZNIR3ACK6IK2MMLDTLVGPJL2OHSKGZMYM3YWBDYYFGKKKZ"
+  },
+  "buyerGate": "CAVXDBDAGR3S5BNHSZFNOJIC4IUMVRSQPWABQYODMW26LS5V6DVWHHPB",
+  "dealId": "14976576550221642278794503640823163603895022430604606235770280664129213201426",
+  "checks": [
+    {
+      "label": "financial issuer registration",
+      "hash": "fe86e702b1ce51d2062dfb9447782939b4e8563c185d20bce54a841a912447a5",
+      "ledger": 5389785,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/fe86e702b1ce51d2062dfb9447782939b4e8563c185d20bce54a841a912447a5",
+      "value": null,
+      "outcome": "accepted"
+    },
+    {
+      "label": "financial deal policy",
+      "hash": "16984d5389261b1224cce22d48c2ec7c85a025bb1c6bca67fa3d6c1c9e5948e8",
+      "ledger": 5389786,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/16984d5389261b1224cce22d48c2ec7c85a025bb1c6bca67fa3d6c1c9e5948e8",
+      "value": null,
+      "outcome": "accepted"
+    },
+    {
+      "label": "property deal policy",
+      "hash": "c3dca0db91df1f3de4973d0817e6ab12bbb3c119f6c08d2954017d29f659aa72",
+      "ledger": 5389787,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/c3dca0db91df1f3de4973d0817e6ab12bbb3c119f6c08d2954017d29f659aa72",
+      "value": null,
+      "outcome": "accepted"
+    },
+    {
+      "label": "An unqualified party cannot preapprove disclosure",
+      "outcome": "rejected",
+      "phase": "simulation",
+      "contractError": 7
+    },
+    {
+      "label": "Forged property issuer rejected",
+      "outcome": "rejected",
+      "phase": "transaction",
+      "hash": "16ebba322846f4d139e5a7f81a54d1a3a6057dc8331f1aed14f6d1f22c4647ec",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/16ebba322846f4d139e5a7f81a54d1a3a6057dc8331f1aed14f6d1f22c4647ec"
+    },
+    {
+      "label": "Site control does not satisfy marketing-authority policy",
+      "outcome": "rejected",
+      "phase": "simulation",
+      "contractError": 4
+    },
+    {
+      "label": "Expired property attestation rejected",
+      "outcome": "rejected",
+      "phase": "simulation",
+      "contractError": 5
+    },
+    {
+      "label": "valid property attestation",
+      "hash": "65c305ad453f0347f4f65e947a667b59f78678f0ad268553515069b7df520805",
+      "ledger": 5389789,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/65c305ad453f0347f4f65e947a667b59f78678f0ad268553515069b7df520805",
+      "value": null,
+      "outcome": "accepted"
+    },
+    {
+      "label": "buyer ZK qualification for mutual deal",
+      "hash": "6a08da079fed14e8446234a0ddf79131fb1a64aba8c040e5d09dbb0f3f423068",
+      "ledger": 5389790,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/6a08da079fed14e8446234a0ddf79131fb1a64aba8c040e5d09dbb0f3f423068",
+      "value": null,
+      "outcome": "accepted"
+    },
+    {
+      "label": "buyer consent true",
+      "hash": "8fbe2b5b8a4e2642b6c1543b23cd197e4727b196b5727b93f7dfe45741788956",
+      "ledger": 5389791,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/8fbe2b5b8a4e2642b6c1543b23cd197e4727b196b5727b93f7dfe45741788956",
+      "value": null,
+      "outcome": "accepted"
+    },
+    {
+      "label": "seller consent true",
+      "hash": "3cbad94f7ab19299d7c44c688cc0390466d024e0383cf1d412752c0e6c983d63",
+      "ledger": 5389792,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/3cbad94f7ab19299d7c44c688cc0390466d024e0383cf1d412752c0e6c983d63",
+      "value": null,
+      "outcome": "accepted"
+    },
+    {
+      "label": "buyer consent false",
+      "hash": "3fcc359d8573d25cca5003dfdbaefc4728f473af673b4a28e8ae03a634490ad2",
+      "ledger": 5389793,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/3fcc359d8573d25cca5003dfdbaefc4728f473af673b4a28e8ae03a634490ad2",
+      "value": null,
+      "outcome": "accepted"
+    },
+    {
+      "label": "buyer consent true",
+      "hash": "58ddeb1cc56ece8b4fef7b68b8a4fc24700fb90aa5637f73896289b4b73f8f55",
+      "ledger": 5389794,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/58ddeb1cc56ece8b4fef7b68b8a4fc24700fb90aa5637f73896289b4b73f8f55",
+      "value": null,
+      "outcome": "accepted"
+    },
+    {
+      "label": "revoke property attestation",
+      "hash": "692f5c814ffa7e92f3972c900add317439520634f9bacde70565fa06cff003d0",
+      "ledger": 5389795,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/692f5c814ffa7e92f3972c900add317439520634f9bacde70565fa06cff003d0",
+      "value": null,
+      "outcome": "accepted"
+    }
+  ],
+  "successfulUnlock": {
+    "label": "seller consent true",
+    "hash": "3cbad94f7ab19299d7c44c688cc0390466d024e0383cf1d412752c0e6c983d63",
+    "ledger": 5389792,
+    "explorer": "https://stellar.expert/explorer/testnet/tx/3cbad94f7ab19299d7c44c688cc0390466d024e0383cf1d412752c0e6c983d63",
+    "value": null
+  },
+  "status": "passed"
+}
