@@ -5,6 +5,8 @@ Copyright (c) 2026 Oleksiy Onishchenko. All rights reserved.
 1. Scope
 This notice applies only to original Deal Passport code, documentation and
 assets owned by Oleksiy Onishchenko. It is not an open-source license.
+It does not restrict any portion to which an applicable third-party
+license requires different permissions or conditions.
 
 2. Hackathon evaluation
 HackMeridian 2026 organizers, authorized judges and reviewers may view,
@@ -36,6 +38,11 @@ this notice does not replace or restrict. See docs/THIRD_PARTY.md,
 licenses/, package-lock.json and Cargo.lock. In particular, the reused
 Stellar educational verifier and fixtures remain under Apache-2.0, and
 the distributed fonts remain under their respective OFL licenses.
+The proving stack also includes GPL-3.0 components, including browser-
+bundled snarkjs. This notice does not override GPL permissions or applicable
+copyleft requirements. It does not establish that the entire current
+distribution can be licensed exclusively as proprietary; see
+docs/THIRD_PARTY.md for the unresolved commercial packaging boundary.
 
 This notice does not purport to revoke rights validly granted under an
 earlier license for an earlier distributed version. Earlier repository

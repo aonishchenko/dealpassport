@@ -6,6 +6,8 @@ node_modules/
 dist/
 target/
 .DS_Store
+.impeccable/review/
+output/demo/
 .build/
 .toolchain/
 .local/

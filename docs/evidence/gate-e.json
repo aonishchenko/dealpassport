@@ -1,0 +1,89 @@
+{
+  "gate": "E",
+  "status": "passed",
+  "recordedAt": "2026-10-26T01:15:23.258Z",
+  "url": "https://dealpassport.aonishchenko33.workers.dev",
+  "network": "Stellar Testnet",
+  "browserProofSeconds": [
+    2.4,
+    2.6
+  ],
+  "checks": [
+    "Public session creates unique Testnet policies",
+    "Browser circuit rejects underfunded credential",
+    "Browser circuit rejects expired credential",
+    "Browser Groth16 proof qualifies on Testnet",
+    "Seller-specific authority attested through public UI",
+    "Both consents unlock server-protected synthetic dossier",
+    "Judge mode rejects replay in simulation",
+    "Judge mode rejects forged issuer as failed Testnet transaction",
+    "Keyboard focus is visible and Enter submits proof",
+    "Desktop 1440px and mobile 390px layouts inspected"
+  ],
+  "limitations": [
+    "Touch emulation is not supported by this in-app browser; mobile pointer interaction was exercised."
+  ],
+  "receipts": [
+    {
+      "detail": "",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/8718533eff28ba9181c9ff6669b2165746e91647c51c50d157af724538adafa2",
+      "label": "Forged property issuer rejected"
+    },
+    {
+      "detail": "",
+      "label": "Replayed proof rejected"
+    },
+    {
+      "detail": "",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/9106e1ec57d087f78f431edac1a5aab3b7112132d475f5a95997720735521c29",
+      "label": "seller consented to disclosure"
+    },
+    {
+      "detail": "",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/d9bcfca9b72cab2229dfc23a11e61d295bba73bba53dd6ee4653d7d4cbd1d245",
+      "label": "buyer consented to disclosure"
+    },
+    {
+      "detail": "",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/00c23d6d43dc87d0b98e16ebdb32d7150f470ba079e96a7e8f0549f9c507f5d6",
+      "label": "Buyer proof verified on Stellar"
+    },
+    {
+      "detail": "",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/1eb3c84f0c943e7bb2555f7eb268ff9581feca0710156566baf8cf89774d461f",
+      "label": "Synthetic reviewer attests marketing authority"
+    },
+    {
+      "detail": "",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/a269ef51b77c81e42a43a888a06008a48c02648dd9ca46f0202be23dcf974958",
+      "label": "Private property policy created"
+    },
+    {
+      "detail": "",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/666237e49099be237718deda6b35574c951a727cb45f85916d51d2afed27caa6",
+      "label": "€750k buyer policy created"
+    }
+  ],
+  "deploymentVersion": "d50149eb-d4c5-4300-863f-b95ce840a8a6",
+  "assessmentFiles": {
+    "robots": 200,
+    "sitemap": 200,
+    "llms": 200,
+    "proofManifest": 200
+  },
+  "publicDossierWithoutSession": 401,
+  "finalRoomLabelVerification": {
+    "passed": true,
+    "desktopWidth": 1440,
+    "mobileWidth": 390,
+    "mobileScrollWidth": 390,
+    "disclosed": [
+      "Property address",
+      "Seller identity",
+      "Authority document"
+    ],
+    "alwaysPrivate": [
+      "Exact buyer balance"
+    ]
+  }
+}

@@ -1,0 +1,15 @@
+# Deal Passport
+
+> Two-sided private qualification and mutually consented disclosure for a specific real-estate deal. HackMeridian 2026 Genesis / Stellar Unlocked; EasyAI, Oleksiy Onishchenko.
+
+## Demo
+- [Live demonstration](https://dealpassport.aonishchenko33.workers.dev/): synthetic property, disposable demo personas, authenticated synthetic issuers, genuine BN254 Groth16 verification on Stellar Testnet.
+- [Judge mode](https://dealpassport.aonishchenko33.workers.dev/judge): valid buyer, underfunded and expired credentials, forged property issuer, replay protection.
+- [Public source and evidence](https://github.com/aonishchenko/dealpassport): contracts, circuit, verification scripts, Testnet receipts, architecture and setup.
+
+## Claim boundaries
+The buyer proves an issuer-certified balance meets the stored €750,000 threshold without putting the exact balance onchain. The property reviewer attests AUTHORIZED_TO_MARKET. Both valid qualifications and both authenticated consents are required; the backend rechecks chain state before dossier disclosure.
+
+All credentials and dossier data are synthetic. No real bank, land registry, title, planning approval or payment is integrated. Persona switching is intentional demo access, not production authentication. Testnet accounts and public inputs are linkable. Educational cryptographic verifier and single-party setup are unaudited. A proof lasts only its current five-minute ledger epoch; start a new demo after expiry.
+
+The protected dossier is served only through a session-authenticated API and is not a public static asset.

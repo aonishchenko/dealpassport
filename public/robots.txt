@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /deal/sample/room
+Sitemap: https://dealpassport.aonishchenko33.workers.dev/sitemap.xml

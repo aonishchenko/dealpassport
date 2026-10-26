@@ -30,3 +30,13 @@ AI assistance: ChatGPT supported idea research and the specification. Codex perf
 - Patched the new development toolchain's compatible Undici version. The dependency audit again reports only the previously disclosed 15 low findings.
 - At Oleksiy's request, verified that application code, styles and generated assets contain no references to the separate prior product. Removed its name from the internal styling brief as well; retained accurate provenance in the build history and third-party disclosure.
 - Replaced the original MIT notice with an all-rights-reserved notice and limited HackMeridian evaluation permission, matching Oleksiy's requirement for separately licensed paid reuse. Third-party licenses and previously granted MIT rights for earlier versions remain unaffected. Reviewed the organizer's published terms, section 6, which retains participant IP subject to component licenses and includes an event operation/judging/promotion grant.
+
+## Public MVP checkpoint
+
+- Deployed the Cloudflare Worker, D1 API and responsive light interface to https://dealpassport.aonishchenko33.workers.dev in the confirmed account.
+- Gate E passed in the public browser: real local Groth16 generation (2.4s and 2.6s observed), real buyer qualification, property attestation, both consents and server-protected dossier disclosure. Underfunded/expired witnesses failed; replay was rejected in simulation; a forged issuer produced a failed Testnet transaction with an explorer receipt. See `docs/evidence/gate-e.json`.
+- Inspected 1440px desktop and 390px mobile layouts, visible keyboard focus and Enter activation. Mobile pointer controls worked. Actual touch-event emulation was unavailable in the in-app browser.
+- Expanded visual review found one disclosure-label inconsistency: the open dossier sidebar still showed locked fields. Corrected it so disclosed fields say Disclosed while the exact buyer balance stays Always private.
+- Published robots.txt, sitemap.xml, llms.txt and a public proof-artifact hash manifest. Verified all return 200, security headers are present, and an unauthenticated dossier request returns 401.
+- The licensing inventory identified GPL-3.0 proving dependencies, including browser-bundled snarkjs. Explicitly documented that the rights-reserved notice does not override GPL permissions/copy-left requirements or make the whole stack pay-only. A long-term proprietary packaging/replacement decision remains with Oleksiy.
+- Updated the organizer-template pitch with actual MVP observations. Pricing remains the unvalidated €89/month or per-verification hypothesis; the Step 02 competitor comparison remains.

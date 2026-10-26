@@ -4,6 +4,10 @@ Private qualification for a specific real-estate deal, using issuer-bound Groth1
 
 **Copyright and reuse:** original Deal Passport work is all rights reserved, with limited HackMeridian jury evaluation permission. Reuse requires a separate written commercial license from Oleksiy Onishchenko. Public visibility is for review, not general permission to reuse. Third-party components keep their own licenses. Earlier MIT grants for earlier published versions are not revoked. See [LICENSE](LICENSE).
 
+**GPL boundary:** the current proving stack includes GPL-3.0 components, including browser-bundled snarkjs. The repository notice cannot restrict their GPL permissions or override applicable copyleft obligations. The whole current stack must not be described as exclusively proprietary or pay-only. Component replacement/separate licensing or a reviewed packaging boundary is required for that commercial goal. See [third-party details](docs/THIRD_PARTY.md).
+
+**Live demo:** https://dealpassport.aonishchenko33.workers.dev
+
 ## Implemented and verified
 
 - **Gate A:** deployed the official educational BN254 Groth16 verifier. A genuine Gnark proof returns `true`; changing its public input returns `false`. Both were submitted as real Testnet transactions.
@@ -13,7 +17,9 @@ Private qualification for a specific real-estate deal, using issuer-bound Groth1
 - **Gate C:** property-specific authenticated marketing-authority attestation and mutual consent. Both valid passports remain locked until both participants consent; withdrawal or property revocation locks fresh reads.
 - **Gate D:** Cloudflare Worker/D1 protected dossier API passed 17 integration checks against Testnet. Direct access, actor mismatch, forged issuer, changed deal, missing consents, replay and revoked access are rejected. See [API evidence](docs/evidence/gate-d.json).
 
-The light responsive application and browser prover are implemented and build successfully. Browser verification, public deployment and demo video are still in progress at this checkpoint.
+- **Gate E:** the deployed light responsive UI generated genuine proofs in the browser (2.4 and 2.6 seconds on the observed device), recorded seller authority and both consents, and fetched the protected dossier. Browser negative cases cover underfunding, expiry, forged issuer and replay. See [public browser evidence](docs/evidence/gate-e.json).
+
+The live synthetic MVP is implemented. Demo-video publication and final human submission remain outstanding. [Architecture and trust boundaries](docs/ARCHITECTURE.md).
 
 ## Evidence
 
@@ -111,4 +117,4 @@ The baseline pairing verifier and Gnark fixtures reuse Stellar Development Found
 
 New event work includes the eligibility circuit, account binding, root/deal policy, serialization boundary, verification scripts and tests. ChatGPT assisted research/specification. Codex assists coding, debugging, verification and artifact preparation. Oleksiy owns product decisions, review, corrections and submission.
 
-The current pitch deck is `output/presentation/Deal_Passport_HackMeridian_Pitch_v2.pptx`. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md). Update implementation-dependent claims against the evidence files before submitting.
+The current pitch deck is `output/presentation/Deal_Passport_HackMeridian_Pitch_v4.pptx`. It describes the observed Testnet MVP. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md).

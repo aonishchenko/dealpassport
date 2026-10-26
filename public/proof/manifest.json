@@ -1,0 +1,9 @@
+{
+  "recordedAt": "2026-10-26T00:10:57.403Z",
+  "ceremony": "Single-party demo only; unaudited",
+  "files": {
+    "public/proof/eligibility.wasm": "d40aede18ba7bce75bb50d4b0afd25078960b60c23054306463ab3d68c2b118e",
+    "public/proof/eligibility.zkey": "b820b348e1369e74449d27c79cb77a12580b812454cf21672fb8cd56351653ba",
+    "circuits/verification_key.json": "f050eb4bc6b268f3445916f211164dc20f57360eb152b3ab0fa47833cb33f25c"
+  }
+}
