@@ -56,3 +56,5 @@ Deployed UI checkpoint `ea45aa5` as Worker version `97cfded5-a3b5-4068-ab9f-0602
 ## Rejection notification correction — 26 October 2026
 
 Underfunded and expired circuit results now display **Credential rejected** with an X icon on the existing crimson feedback fill (`#8c2432`). Rejected contract-policy checks use **Action rejected** in crimson. Successful outcomes remain green, and each new operation resets the outcome kind. Both negative credentials were exercised through the real browser prover; computed feedback color was `rgb(140, 36, 50)` for both. Desktop/mobile rendering and keyboard dismissal passed; the 390px layout has no horizontal overflow and retains a 44px dismiss control. Build/type checking passed. No proof or credential timing policy changed.
+
+Correction checkpoint `00f6acf` deployed as Worker version `e974c0b3-225a-4597-b3b9-aa6f15ec2230`. The live JavaScript bundle exactly matches the browser-verified local build (SHA-256 `9ee7b04bb873c7cbb32c35d618e09e05a871df81d4b5992447ea6d5607800b09`).
