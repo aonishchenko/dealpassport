@@ -8,11 +8,13 @@ Private qualification for a specific real-estate deal, using issuer-bound Groth1
 
 **Live demo:** https://dealpassport.aonishchenko33.workers.dev
 
-## System architecture
+## Production architecture
 
-![Deal Passport implemented architecture: browser proof, Cloudflare API and D1, Stellar contracts, and protected dossier](docs/architecture-assets/dealpassport-system.svg)
+Target design for the production system. React connects to one Cloudflare backend for buyer verification, seller authority and deal access. Private ZK proofs and Stellar/Soroban enforce qualification and consent. External providers and the future proving stack remain subject to selection.
 
-[Open the full-size diagram](docs/architecture-assets/dealpassport-system.svg) · [PNG version](docs/architecture-assets/dealpassport-system.png) · [Trust boundaries and expiry](docs/ARCHITECTURE.md)
+![Deal Passport production target: React, Cloudflare verification backend, external evidence services, private ZK proofs and Stellar Soroban](docs/architecture-assets/dealpassport-system.svg)
+
+[Open the full-size diagram](docs/architecture-assets/dealpassport-system.svg) · [PNG version](docs/architecture-assets/dealpassport-system.png) · [Production design](docs/PRODUCTION_ARCHITECTURE.md) · [Current implementation and trust boundaries](docs/ARCHITECTURE.md)
 
 ## Implemented and verified
 
@@ -123,7 +125,7 @@ The baseline pairing verifier and Gnark fixtures reuse Stellar Development Found
 
 New event work includes the eligibility circuit, account binding, root/deal policy, serialization boundary, verification scripts and tests. ChatGPT assisted research/specification. Codex assists coding, debugging, verification and artifact preparation. Oleksiy owns product decisions, review, corrections and submission.
 
-The current [seven-slide pitch deck](output/presentation/Deal_Passport_HackMeridian_Pitch_v6.pptx) describes the implemented Testnet MVP, with supporting illustrations and the system architecture on slide 6 within Step 03. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md); [deck verification](docs/evidence/pitch-v6.json) records the exported artifact checks.
+The current [seven-slide pitch deck](output/presentation/Deal_Passport_HackMeridian_Pitch_v7.pptx) describes the implemented Testnet MVP, with supporting illustrations and the production target architecture on slide 6 within Step 03. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md).
 
 ## Post-MVP proving-stack migration
 

@@ -1,8 +1,6 @@
 # Architecture and trust boundaries
 
-![Implemented Deal Passport architecture](architecture-assets/dealpassport-system.svg)
-
-[Full-size SVG](architecture-assets/dealpassport-system.svg) · [PNG](architecture-assets/dealpassport-system.png)
+This document describes the current implementation. The README and pitch use the separate [production target architecture](PRODUCTION_ARCHITECTURE.md).
 
 ```mermaid
 flowchart TD
