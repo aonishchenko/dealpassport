@@ -131,7 +131,7 @@ New event work includes the eligibility circuit, account binding, root/deal poli
 
 The current [eight-slide pitch deck](output/presentation/Deal_Passport_HackMeridian_Pitch_v12.pptx) describes the implemented Testnet MVP, with AI-generated conceptual illustrations, the production target architecture on slide 6 and a planned MCP extension on slide 7 within Step 03. The MCP extension is a future concept, not an implemented feature. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md). [Illustration assets and prompts](docs/pitch-assets/PROMPTS.md) record the generated scenes; they represent no real people, customers, properties or partnerships.
 
-[Download the same presentation as PDF](output/pdf/Deal_Passport_HackMeridian_Pitch_v12.pdf).
+[Download the same presentation as PDF](output/pdf/EasyAI_Oleksiy_Onishchenko_Deal_Passport_HackMeridian_Pitch.pdf).
 
 ## Post-MVP proving-stack migration
 
