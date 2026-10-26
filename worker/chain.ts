@@ -86,6 +86,7 @@ export async function submit(
   contract: string,
   fn: string,
   args: xdr.ScVal[],
+  progress?: (phase: string, hash?: string) => Promise<void>,
 ) {
   const node = server();
   const account = await node.getAccount(key.publicKey());
@@ -98,14 +99,17 @@ export async function submit(
     )
     .setTimeout(90)
     .build();
+  await progress?.("Simulating contract policy");
   const simulation = await node.simulateTransaction(tx);
   if (rpc.Api.isSimulationError(simulation))
     throw new ChainRejection("simulation", simulation.error);
   const ready = rpc.assembleTransaction(tx, simulation).build();
   ready.sign(key);
+  await progress?.("Signing and submitting Testnet transaction");
   const sent = await node.sendTransaction(ready);
   if (sent.status === "ERROR")
     throw Error("Testnet did not accept the transaction. Try again.");
+  await progress?.("Waiting for Testnet confirmation", sent.hash);
   for (let i = 0; i < 35; i++) {
     const result = await node.getTransaction(sent.hash);
     if (result.status === "SUCCESS")
