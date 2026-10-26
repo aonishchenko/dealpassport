@@ -1,0 +1,25 @@
+{
+  "checkpoint": "Pitch refresh and architecture",
+  "date": "2026-10-26",
+  "file": "output/presentation/Deal_Passport_HackMeridian_Pitch_v6.pptx",
+  "source_template": "output/presentation/Deal_Passport_HackMeridian_Pitch_v4.pptx",
+  "sha256": "6d01c7155172acd24d9e0790f5d527782183bc5321a75f9bed4b820f77e90623",
+  "bytes": 2218167,
+  "slide_count": 7,
+  "architecture_slide": 6,
+  "architecture_pitch_step": "03",
+  "native_competitor_table_slide": 4,
+  "validation": {
+    "package_integrity": "pass",
+    "layout_and_font_policy": "pass",
+    "first_party_reimport": "pass",
+    "embedded_images": "pass",
+    "all_slides_rendered_and_visually_reviewed": true,
+    "native_powerpoint_execution_verified": false
+  },
+  "claim_boundaries": [
+    "Synthetic credentials and fictional dossier with genuine Stellar Testnet verification.",
+    "Real identity/property provider integration, same-deal proof renewal and non-GPL migration remain post-MVP.",
+    "Pricing and product-market fit remain unvalidated."
+  ]
+}
