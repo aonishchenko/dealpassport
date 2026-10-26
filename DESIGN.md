@@ -292,3 +292,7 @@ Seller authority displays a 15px expiry line tied to the deal/session lifetime, 
 - Don't use color alone to communicate verification, failure or privacy.
 - Don't add photography, logos or borrowed identity assets without an explicit brief.
 - Don't replace the canonical product specification with a generated product document.
+
+### Rejection feedback
+
+Underfunded and expired credential checks use the crimson feedback fill with an X icon and **Credential rejected** heading. Rejected contract-policy checks use **Action rejected** on the same crimson fill. Green **Operation complete** feedback is reserved for successful product outcomes. Starting a new operation resets the notice kind, so a prior rejection cannot recolor the next success.

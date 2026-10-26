@@ -130,6 +130,9 @@ export default function App() {
     [busy, setBusy] = useState(""),
     [error, setError] = useState(""),
     [notice, setNotice] = useState(""),
+    [noticeKind, setNoticeKind] = useState<
+      "success" | "credential-rejected" | "policy-rejected"
+    >("success"),
     [scenario, setScenario] = useState("valid"),
     [checks, setChecks] = useState<string[]>([]),
     [proofMs, setProofMs] = useState<number>(),
@@ -276,6 +279,7 @@ export default function App() {
     setBusy(label);
     setError("");
     setNotice("");
+    setNoticeKind("success");
     try {
       await fn();
       browserLog(`${label.replace(/…$/, "")} · Completed`, "success");
@@ -420,6 +424,7 @@ export default function App() {
             current.csrf,
           );
           setActivity(saved.activity);
+          setNoticeKind("credential-rejected");
           setNotice(
             label +
               ". No proof or transaction was created. Saved in this session’s operation history as a browser-reported check.",
@@ -456,6 +461,7 @@ export default function App() {
         stateRef.current?.csrf,
       );
       setState(result);
+      setNoticeKind("policy-rejected");
       setNotice(
         `${result.label} during ${result.phase}. ${result.phase === "simulation" ? "No rejected transaction was submitted." : ""}`,
       );
@@ -1367,7 +1373,12 @@ export default function App() {
         {(busy || error || notice) && (
           <div
             className={
-              "feedback " + (error ? "error" : busy ? "progress" : "success")
+              "feedback " +
+              (error || (!busy && noticeKind !== "success")
+                ? "error"
+                : busy
+                  ? "progress"
+                  : "success")
             }
             role={error ? "alert" : "status"}
             aria-live="polite"
@@ -1401,9 +1412,19 @@ export default function App() {
               </>
             ) : (
               <>
-                <Check size={30} />
+                {noticeKind === "success" ? (
+                  <Check size={30} />
+                ) : (
+                  <X size={30} />
+                )}
                 <div>
-                  <strong>Operation complete</strong>
+                  <strong>
+                    {noticeKind === "credential-rejected"
+                      ? "Credential rejected"
+                      : noticeKind === "policy-rejected"
+                        ? "Action rejected"
+                        : "Operation complete"}
+                  </strong>
                   <p>{notice}</p>
                 </div>
               </>
