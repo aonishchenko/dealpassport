@@ -5,7 +5,7 @@ flowchart TD
   B[Browser: synthetic buyer or seller persona] -->|HttpOnly session + CSRF nonce| W[Cloudflare Worker]
   B -->|Private synthetic credential| P[Browser Groth16 prover]
   P -->|Proof + public signals only| W
-  W --> D[(D1: hashed sessions and public receipts)]
+  W --> D[(D1: hashed sessions, receipts and private operation history)]
   W -->|Authenticated Testnet transactions| E[EligibilityGate]
   E --> V[BN254 Groth16 verifier]
   I[Synthetic financial issuer] -->|Authorized credential root| E
@@ -39,3 +39,9 @@ Revocation and withdrawal prevent subsequent authorized responses. Data already 
 ## License boundary
 
 Original business logic is subject to the repository's rights-reserved notice and evaluation permission. Reused code and dependencies retain their own licenses. In particular, snarkjs, circomlib, circomlibjs, circom2 and ffjavascript declare GPL-3.0. The root notice does not make those components pay-only or remove any applicable copyleft obligations. Commercial packaging needs a component-level licensing review or replacement/separate licensing of incompatible components. See `docs/THIRD_PARTY.md`.
+
+### Demo operation history
+
+`GET /api/activity` reads only the authenticated session’s latest 100 structured operation records. Testnet writes record simulation, signing/submission, pending confirmation and final outcome. `POST /api/circuit-result` accepts only the underfunded/expired scenario names with CSRF protection; it stores a browser-reported rejection, never an onchain receipt or private witness. Logs are cleaned after one day. Browser-only progress is transient; server-recorded steps and reported rejections survive refresh while the session remains valid.
+
+The interface recovers from an expired/missing session by clearing protected content and showing **Start new demo session**. Session/deal and seller-authority deadlines are shown separately from the shorter buyer-proof window. Five minutes is a conservative MVP policy, not a Stellar requirement; changing it needs consistent circuit epoch, contract and credential changes.

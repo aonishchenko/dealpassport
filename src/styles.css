@@ -1288,3 +1288,222 @@ dd {
   margin-left: auto;
   align-self: flex-start;
 }
+
+/* Demo feedback stays readable from the back of a presentation room. */
+.feedback {
+  width: 880px;
+  max-width: calc(100vw - 40px);
+  padding: 26px;
+  gap: 18px;
+  max-height: min(44vh, 360px);
+  overflow-y: auto;
+  border: 1px solid transparent;
+  color: #fff;
+}
+.feedback.progress {
+  background: #123d68;
+}
+.feedback.success {
+  background: #17503c;
+}
+.feedback.error {
+  background: #8c2432;
+  color: #fff;
+  border-color: #8c2432;
+}
+.feedback p,
+.feedback.error p {
+  color: #fff;
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 6px 0 0;
+}
+.feedback strong {
+  font-size: 23px;
+  line-height: 1.35;
+  font-weight: 650;
+  color: #fff;
+}
+.feedback > svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+.feedback .working-dot {
+  width: 16px;
+  height: 16px;
+  background: #fff;
+  margin-top: 8px;
+}
+.dismiss-feedback {
+  min-height: 44px;
+  width: 44px;
+  min-width: 44px;
+  color: #fff;
+}
+.dismiss-feedback:hover {
+  background: #ffffff24;
+  color: #fff;
+}
+.feedback :focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+.feedback-action {
+  color: #8c2432;
+  background: #fff;
+  border: 1px solid #fff;
+  font-size: 16px;
+  margin-top: 16px;
+  padding: 12px 16px;
+  text-transform: none;
+}
+.feedback-action:hover {
+  background: #f5e7ea;
+  color: #8c2432;
+}
+.session-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.session-strip > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+}
+.session-strip button {
+  min-height: 44px;
+  font-size: 14px;
+}
+.preparation-recovery {
+  padding: 22px 0;
+}
+.operation-log {
+  margin: 0 0 28px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.operation-log summary {
+  cursor: pointer;
+  font-size: 19px;
+  font-weight: 600;
+  min-height: 44px;
+  padding: 8px 0;
+}
+.operation-log summary > span {
+  font-size: 13px;
+  font-weight: 500;
+  margin-left: 12px;
+  color: var(--olive);
+}
+.operation-log details > p {
+  font-size: 13px;
+  margin: 4px 0 12px;
+}
+.operation-log ol {
+  list-style: none;
+  margin: 0;
+  padding: 0 14px;
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  background: var(--stone);
+}
+.operation-log .operation {
+  display: flex;
+  gap: 12px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.operation-log .operation:last-child {
+  border-bottom: none;
+}
+.operation-icon {
+  flex-shrink: 0;
+  color: #17503c;
+  margin-top: 3px;
+}
+.operation.running .operation-icon {
+  color: #123d68;
+}
+.operation.failed .operation-icon,
+.operation.rejected .operation-icon {
+  color: #8c2432;
+}
+.operation strong {
+  display: block;
+  font-size: 17px;
+  font-weight: 550;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.operation-meta {
+  display: block;
+  font-size: 12px;
+  margin-top: 4px;
+  color: #565448;
+}
+.operation-meta a {
+  display: inline-flex;
+  align-items: center;
+}
+.authority-expiry {
+  margin: 18px 0;
+}
+.expiry {
+  font-size: 15px;
+  line-height: 1.5;
+}
+.select-wrap select {
+  font-size: 16px;
+}
+@media (max-width: 760px) {
+  .feedback {
+    max-width: calc(100vw - 24px);
+    bottom: 12px;
+    padding: 18px;
+    gap: 12px;
+    max-height: 46vh;
+  }
+  .feedback p,
+  .feedback.error p {
+    font-size: 16px;
+  }
+  .feedback strong {
+    font-size: 19px;
+  }
+  .feedback > svg {
+    width: 24px;
+    height: 24px;
+  }
+  .session-strip {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .session-strip > span {
+    font-size: 14px;
+  }
+  .operation-log summary {
+    font-size: 17px;
+  }
+  .operation-log summary > span {
+    font-size: 12px;
+    margin-left: 6px;
+  }
+  .operation strong {
+    font-size: 15px;
+  }
+  .operation-meta {
+    font-size: 11px;
+  }
+  .operation-log ol {
+    max-height: 210px;
+    padding: 0 10px;
+  }
+}

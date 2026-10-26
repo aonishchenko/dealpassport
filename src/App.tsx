@@ -25,7 +25,17 @@ type Receipt = {
   outcome?: string;
   phase?: string;
 };
+type Activity = {
+  id: number | string;
+  label: string;
+  outcome: "running" | "success" | "rejected" | "failed";
+  source: "server" | "testnet" | "browser";
+  createdAt: number;
+  hash?: string;
+};
 type State = {
+  sessionExpires: number;
+  propertyExpires: number;
   sessionId: string;
   csrf: string;
   role: Role;
@@ -84,6 +94,14 @@ const names: Record<Role, string> = {
 const short = (s: string) => s.slice(0, 7) + "…" + s.slice(-6);
 const formatTime = (seconds: number) =>
   `${Math.floor(Math.max(0, seconds) / 60)}:${String(Math.max(0, seconds) % 60).padStart(2, "0")}`;
+class ApiError extends Error {
+  constructor(
+    public status: number,
+    message: string,
+  ) {
+    super(message);
+  }
+}
 async function api<T>(
   path: string,
   input?: unknown,
@@ -99,7 +117,10 @@ async function api<T>(
   });
   const value = (await response.json()) as T & { error?: string };
   if (!response.ok)
-    throw Error(value.error ?? "The demo is unavailable. Try again.");
+    throw new ApiError(
+      response.status,
+      value.error ?? "The demo is unavailable. Try again.",
+    );
   return value;
 }
 export default function App() {
@@ -113,9 +134,40 @@ export default function App() {
     [checks, setChecks] = useState<string[]>([]),
     [proofMs, setProofMs] = useState<number>(),
     [dossier, setDossier] = useState<Dossier | null>(null),
-    [clock, setClock] = useState(0);
+    [clock, setClock] = useState(0),
+    [activity, setActivity] = useState<Activity[]>([]),
+    [localActivity, setLocalActivity] = useState<Activity[]>([]),
+    [logError, setLogError] = useState("");
+  const taskRunning = useRef(false);
+  const activeSession = useRef<string | undefined>(undefined);
   const stateRef = useRef(state);
   stateRef.current = state;
+  activeSession.current = state?.sessionId;
+  function sessionLost() {
+    stateRef.current = null;
+    activeSession.current = undefined;
+    setState(null);
+    setDossier(null);
+    setActivity([]);
+    setLocalActivity([]);
+    setError(
+      "Your private demo session has ended. Start a new demo session to continue.",
+    );
+  }
+  function browserLog(label: string, outcome: Activity["outcome"] = "running") {
+    setLocalActivity((items) =>
+      [
+        {
+          id: crypto.randomUUID(),
+          label,
+          outcome,
+          source: "browser" as const,
+          createdAt: Date.now(),
+        },
+        ...items,
+      ].slice(0, 60),
+    );
+  }
   const role: Role =
     path === "/judge"
       ? "judge"
@@ -154,17 +206,62 @@ export default function App() {
     if (!state) return;
     const timer = setInterval(() => {
       if (busy) return;
+      const sessionId = stateRef.current?.sessionId;
       api<State>("status")
         .then((s) => {
+          if (stateRef.current?.sessionId !== sessionId) return;
           setState(s);
           if (!s.status.unlocked) setDossier(null);
         })
-        .catch(() => {
+        .catch((e) => {
+          if (stateRef.current?.sessionId !== sessionId) return;
           setDossier(null);
+          if (e instanceof ApiError && e.status === 401) sessionLost();
         });
     }, 12000);
     return () => clearInterval(timer);
   }, [state?.sessionId, busy]);
+  useEffect(() => {
+    if (!state) return;
+    const sessionId = state.sessionId;
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout>;
+    async function poll() {
+      try {
+        const result = await api<{ activity: Activity[] }>("activity");
+        if (!cancelled && activeSession.current === sessionId) {
+          setActivity(result.activity);
+          setLogError("");
+        }
+      } catch (e) {
+        if (!cancelled && activeSession.current === sessionId) {
+          if (e instanceof ApiError && e.status === 401) sessionLost();
+          else
+            setLogError(
+              "Operation history is temporarily unavailable. Retrying…",
+            );
+        }
+      }
+      if (!cancelled) timer = setTimeout(() => void poll(), busy ? 1500 : 6000);
+    }
+    void poll();
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [state?.sessionId, busy]);
+  useEffect(() => {
+    if (busy) browserLog(busy);
+  }, [busy]);
+  const sessionRemaining = state
+    ? Math.ceil(state.sessionExpires - Date.now() / 1000)
+    : 0;
+  useEffect(() => {
+    if (state && sessionRemaining <= 0) sessionLost();
+  }, [clock, state?.sessionId, sessionRemaining]);
+  const operations = [...activity, ...localActivity]
+    .sort((a, b) => b.createdAt - a.createdAt)
+    .slice(0, 100);
   const expires = state?.proofExpires
     ? Math.ceil(state.proofExpires - Date.now() / 1000)
     : 0;
@@ -174,17 +271,22 @@ export default function App() {
   const buyerValid = Boolean(state?.status.buyer_valid && expires > 0);
   const unlocked = Boolean(state?.status.unlocked && buyerValid);
   async function task(label: string, fn: () => Promise<void>) {
-    if (busy) return;
+    if (taskRunning.current) return;
+    taskRunning.current = true;
     setBusy(label);
     setError("");
     setNotice("");
     try {
       await fn();
+      browserLog(`${label.replace(/…$/, "")} · Completed`, "success");
     } catch (e) {
+      if (e instanceof ApiError && e.status === 401) sessionLost();
+      browserLog(`${label.replace(/…$/, "")} · Failed`, "failed");
       setError(
         e instanceof Error ? e.message : "The operation failed. Try again.",
       );
     } finally {
+      taskRunning.current = false;
       setBusy("");
     }
   }
@@ -210,7 +312,12 @@ export default function App() {
   async function start(next: Role = "buyer") {
     await task("Creating your private demo session…", async () => {
       let s = await api<State>("session", {});
+      stateRef.current = s;
+      activeSession.current = s.sessionId;
       setState(s);
+      setActivity([]);
+      setLocalActivity([]);
+      move(routes[next]);
       setDossier(null);
       setChecks([]);
       setProofMs(undefined);
@@ -230,6 +337,10 @@ export default function App() {
       const s = await api<State>(endpoint, input, stateRef.current?.csrf);
       setState(s);
       setDossier(null);
+      setNotice(
+        label.replace(/…$/, "") +
+          " Completed; the current onchain state is shown below.",
+      );
     });
   }
   async function prove(testScenario = scenario) {
@@ -298,7 +409,21 @@ export default function App() {
             );
           const label = `${testScenario === "underfunded" ? "Underfunded" : "Expired"} credential rejected by the circuit`;
           setChecks((c) => [label, ...c]);
-          setNotice(label + ". No proof or transaction was created.");
+          browserLog(
+            label + ". No proof or transaction was created.",
+            "rejected",
+          );
+          setBusy("Saving the browser-reported circuit check…");
+          const saved = await api<{ activity: Activity[] }>(
+            "circuit-result",
+            { scenario: testScenario },
+            current.csrf,
+          );
+          setActivity(saved.activity);
+          setNotice(
+            label +
+              ". No proof or transaction was created. Saved in this session’s operation history as a browser-reported check.",
+          );
           return;
         }
         if (testScenario !== "valid")
@@ -505,12 +630,115 @@ export default function App() {
                 synthetic. Onchain verification and access checks are real.
               </p>
             </div>
+            {state && (
+              <div className="session-strip">
+                <span>
+                  <Clock size={18} /> Private session ·{" "}
+                  {formatTime(sessionRemaining)} remaining
+                </span>
+                <button
+                  className="text-button"
+                  disabled={Boolean(busy)}
+                  onClick={() => void start(role)}
+                >
+                  Start new demo session <RefreshCw size={17} />
+                </button>
+              </div>
+            )}
+            {state && !state.prepared && !busy && (
+              <div className="preparation-recovery">
+                <p>
+                  Your private session exists. Finish creating its Testnet
+                  policies to enable the demo.
+                </p>
+                <button
+                  className="primary"
+                  onClick={() =>
+                    void mutate(
+                      "prepare",
+                      {},
+                      "Preparing the deal policies on Testnet…",
+                    )
+                  }
+                >
+                  Finish preparing this deal <ArrowRight size={18} />
+                </button>
+              </div>
+            )}
+            {(state || busy || operations.length > 0) && (
+              <section className="operation-log" aria-label="Operation history">
+                <details open={Boolean(busy)}>
+                  <summary>
+                    Live operation history{" "}
+                    <span>{busy ? "In progress" : "Latest activity"}</span>
+                  </summary>
+                  <p>
+                    Testnet steps are recorded by the server. Browser checks are
+                    reported by this browser. No private witness data is logged.
+                  </p>
+                  {logError && <p className="warning">{logError}</p>}
+                  <ol tabIndex={0} aria-label="Recent operations">
+                    {operations.length === 0 && (
+                      <li>Waiting for the first operation…</li>
+                    )}
+                    {operations.map((item) => (
+                      <li key={item.id} className={"operation " + item.outcome}>
+                        <span className="operation-icon" aria-hidden="true">
+                          {item.outcome === "running" ? (
+                            <Clock size={19} />
+                          ) : item.outcome === "failed" ? (
+                            <X size={19} />
+                          ) : (
+                            <Check size={19} />
+                          )}
+                        </span>
+                        <div>
+                          <strong>{item.label}</strong>
+                          <span className="operation-meta">
+                            {new Date(item.createdAt).toLocaleTimeString([], {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              second: "2-digit",
+                            })}{" "}
+                            ·{" "}
+                            {item.source === "browser"
+                              ? "Browser-reported"
+                              : item.source === "testnet"
+                                ? "Stellar Testnet"
+                                : "Demo server"}{" "}
+                            ·{" "}
+                            {item.outcome === "running"
+                              ? "Step started"
+                              : item.outcome}
+                            {item.hash && (
+                              <>
+                                {" "}
+                                ·{" "}
+                                <a
+                                  href={`https://stellar.expert/explorer/testnet/tx/${item.hash}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  Transaction <ArrowUpRight size={13} />
+                                </a>
+                              </>
+                            )}
+                          </span>
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </details>
+              </section>
+            )}
             {!state ? (
               <section className="start-prompt">
                 <h2>Two passports. One private deal.</h2>
                 <p>
                   Start a private session to create your deal policies on
-                  Testnet. You can switch between all four demo personas.
+                  Testnet. Click the button below; no account or wallet is
+                  needed. Keep cookies enabled in this browser. You can switch
+                  between all four demo personas.
                 </p>
                 <button
                   className="primary"
@@ -698,10 +926,16 @@ export default function App() {
                         {buyerValid && (
                           <span className="expiry">
                             <Clock size={15} />
-                            Valid for {formatTime(expires)}
+                            Proof access expires in {formatTime(expires)}
                           </span>
                         )}
                       </div>
+                      <p className="field-help">
+                        Buyer access ends at the current five-minute
+                        proof-window boundary, or earlier if the deal ends. The
+                        issuer’s underlying credential has a separate validity
+                        period.
+                      </p>
                       {state.qualified && !buyerValid && (
                         <p className="warning">
                           This proof window has expired. Start a fresh demo deal
@@ -786,6 +1020,10 @@ export default function App() {
                           <dd>Marketing authority for this deal only</dd>
                         </div>
                       </dl>
+                      <p className="expiry authority-expiry">
+                        <Clock size={18} /> Authority expires with this deal in{" "}
+                        {formatTime(sessionRemaining)} (up to 20 minutes).
+                      </p>
                       <p className="field-help">
                         This claim does not assert ownership, title, planning
                         permission or legal due diligence.
@@ -1087,18 +1325,34 @@ export default function App() {
                     direct link cannot bypass the policy.
                   </p>
                   <div className="private-fields">
-                    <span>{room && dossier ? "Disclosed in this room" : "Until disclosure"}</span>
+                    <span>
+                      {room && dossier
+                        ? "Disclosed in this room"
+                        : "Until disclosure"}
+                    </span>
                     <div>
                       <span>Property address</span>
-                      {room && dossier ? <span>Disclosed</span> : <LockKeyhole size={13} />}
+                      {room && dossier ? (
+                        <span>Disclosed</span>
+                      ) : (
+                        <LockKeyhole size={13} />
+                      )}
                     </div>
                     <div>
                       <span>Seller identity</span>
-                      {room && dossier ? <span>Disclosed</span> : <LockKeyhole size={13} />}
+                      {room && dossier ? (
+                        <span>Disclosed</span>
+                      ) : (
+                        <LockKeyhole size={13} />
+                      )}
                     </div>
                     <div>
                       <span>Authority document</span>
-                      {room && dossier ? <span>Disclosed</span> : <LockKeyhole size={13} />}
+                      {room && dossier ? (
+                        <span>Disclosed</span>
+                      ) : (
+                        <LockKeyhole size={13} />
+                      )}
                     </div>
                     <div>
                       <span>Buyer’s exact balance</span>
@@ -1112,7 +1366,9 @@ export default function App() {
         )}
         {(busy || error || notice) && (
           <div
-            className={"feedback " + (error ? "error" : "")}
+            className={
+              "feedback " + (error ? "error" : busy ? "progress" : "success")
+            }
             role={error ? "alert" : "status"}
             aria-live="polite"
           >
@@ -1121,18 +1377,35 @@ export default function App() {
                 <span className="working-dot" />
                 <div>
                   <strong>{busy}</strong>
-                  <p>Keep this page open while the operation completes.</p>
+                  <p>
+                    Keep this page open. Follow each step in the live operation
+                    history.
+                  </p>
                 </div>
               </>
             ) : error ? (
               <>
-                <X size={18} />
-                <p>{error}</p>
+                <X size={30} />
+                <div>
+                  <strong>Action needs attention</strong>
+                  <p>{error}</p>
+                  {!state && (
+                    <button
+                      className="feedback-action"
+                      onClick={() => void start(role)}
+                    >
+                      Start new demo session <ArrowRight size={20} />
+                    </button>
+                  )}
+                </div>
               </>
             ) : (
               <>
-                <Check size={18} />
-                <p>{notice}</p>
+                <Check size={30} />
+                <div>
+                  <strong>Operation complete</strong>
+                  <p>{notice}</p>
+                </div>
               </>
             )}
             {!busy && (
@@ -1144,7 +1417,7 @@ export default function App() {
                   setNotice("");
                 }}
               >
-                <X size={16} />
+                <X size={24} />
               </button>
             )}
           </div>

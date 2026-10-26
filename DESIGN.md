@@ -11,6 +11,12 @@ colors:
   danger: "#8f3a2b"
   muted: "#6f6c58"
   olive-hover: "#4e4c3f"
+  feedback-progress: "#123d68"
+  feedback-success: "#17503c"
+  feedback-error: "#8c2432"
+  feedback-text: "#fff"
+  feedback-action-hover: "#f5e7ea"
+  operation-meta: "#565448"
 typography:
   display:
     fontFamily: '"Lora Variable", Lora, Georgia, serif'
@@ -45,6 +51,15 @@ typography:
     fontWeight: 600
     lineHeight: 1.4
     letterSpacing: "0.075em"
+  feedback-body:
+    fontFamily: '"Inter Variable", Inter, system-ui, sans-serif'
+    fontSize: "20px"
+    lineHeight: 1.5
+  feedback-title:
+    fontFamily: '"Inter Variable", Inter, system-ui, sans-serif'
+    fontSize: "23px"
+    fontWeight: 650
+    lineHeight: 1.35
 rounded:
   square: "0"
   dot: "50%"
@@ -105,6 +120,30 @@ components:
     textColor: "{colors.olive}"
     rounded: "{rounded.square}"
     size: "22px"
+  feedback-progress:
+    backgroundColor: "{colors.feedback-progress}"
+    textColor: "{colors.feedback-text}"
+    rounded: "{rounded.square}"
+    padding: "26px"
+    width: "880px"
+  feedback-success:
+    backgroundColor: "{colors.feedback-success}"
+    textColor: "{colors.feedback-text}"
+    rounded: "{rounded.square}"
+    padding: "26px"
+  feedback-error:
+    backgroundColor: "{colors.feedback-error}"
+    textColor: "{colors.feedback-text}"
+    rounded: "{rounded.square}"
+    padding: "26px"
+  operation-history:
+    backgroundColor: "{colors.stone}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.square}"
+    padding: "0 14px"
+  session-strip:
+    textColor: "{colors.ink}"
+    padding: "14px 0"
 ---
 
 # Design System: Deal Passport
@@ -141,7 +180,9 @@ The palette is warm, low-chroma and predominantly neutral. The frontmatter recor
 - **Rule:** Dividers, outlines and secondary-button borders.
 - **Muted Olive:** Small supporting metadata and fine print.
 
-Success green marks expiry, network and successful receipt indicators. Brick danger marks error borders and error text. Warning copy uses its observed warm tint locally; it is not a separate brand accent.
+Success green marks expiry, network and successful receipt indicators. Warning copy uses its observed warm tint locally; it is not a separate brand accent.
+
+The user approved a component-specific exception to the main palette: **Progress Blue**, **Completion Green** and **Attention Red** make presentation feedback easy to read with **White Feedback Text**. These colors also identify running, successful and failed/rejected operation-history icons. **Operation Metadata** supplies readable supporting history text. Keep these colors within operational feedback and history; the paper, stone, olive and font identity stays intact. A completed negative test may use Completion Green because the test completed; its message and history outcome must still explicitly say rejected. Qualification is a separate state.
 
 **The State Before Decoration Rule.** Use color, labels and icons to explain qualification or consent; never imply a verified state through decoration alone.
 
@@ -161,6 +202,8 @@ Lora supplies restrained editorial character. Inter keeps the operational interf
 - **Subheading:** Inter weight 600, with context-specific compact sizes for grouped information.
 - **Body:** General paragraph token is the base. Workspace explanations commonly use 12–13px; introductory copy uses 16px on desktop. Paragraphs have a default maximum measure of 68ch, with narrower contextual limits.
 - **Label:** Uppercase action labels use the label token. Field labels are 10px with 0.07em tracking; status labels are 9px with 0.09em tracking. Mobile supporting labels become smaller as recorded in the stylesheet.
+- **Feedback:** High-contrast notices use the feedback-title and feedback-body tokens. On mobile these become 19px title and 16px body; line heights remain 1.35 and 1.5. This larger hierarchy serves demonstration-room readability.
+- **History:** Operation summary is 19px / weight 600, and entry titles are 17px / weight 550 / line-height 1.5. Mobile sizes are 17px and 15px. Source/time/outcome metadata is 12px, becoming 11px on mobile.
 
 ## Layout
 
@@ -174,7 +217,7 @@ Spacing is contextual rather than a rigid mathematical scale. Repeated 12px icon
 
 ## Elevation & Depth
 
-The implementation uses no box shadows. Paper and stone distinguish context; one-pixel rules separate adjacent content. The feedback notice is fixed above the bottom edge with a centered width of 620px and a viewport-constrained maximum width. It uses a border and tonal fill rather than elevation styling.
+The implementation uses no box shadows. Paper and stone distinguish context; one-pixel rules separate adjacent content. Feedback is a fixed, centered notice 20px above the bottom edge, with an 880px width and a maximum width of the viewport minus 40px. Its internal content scrolls when it exceeds the smaller of 44vh or 360px. Mobile uses 12px bottom and side clearances and a maximum height of 46vh. Strong semantic fills provide contrast without introducing shadows or changing the rest of the interface.
 
 **The Flat Ledger Rule.** Separate content with spacing, fine rules and stone surfaces. Keep the implemented interface free of shadows.
 
@@ -200,7 +243,7 @@ The room panel is a stone surface with 28px desktop padding, 24px at the interme
 
 ### Inputs / Fields
 
-The shipped credential control is a native select, with a custom inline chevron and a visible external label. It has a stone fill, rule border, square corners and a 48px minimum height. Its font is 13px on desktop and 16px on mobile. Focus follows the shared outline. Supporting help sits beneath the field. There is no standalone text-input component in the current interface.
+The shipped credential control is a native select, with a custom inline chevron and a visible external label. It has a stone fill, rule border, square corners and a 48px minimum height. Its font is 16px at all widths. Focus follows the shared outline. Supporting help sits beneath the field. There is no standalone text-input component in the current interface.
 
 ### Navigation
 
@@ -212,7 +255,23 @@ Four numbered square markers identify the room conditions. Each becomes an olive
 
 ### Evidence and feedback
 
-Evidence is a flat ruled list with a status icon, action label, short technical metadata and optional external receipt link. Feedback uses a bordered stone notice; errors switch border and text to danger. Busy state uses an opacity pulse lasting 1.5s. The reduced-motion media query disables animation and transitions. Nonbusy notices have a dismiss action. Error notices use alert semantics and informational progress uses status semantics.
+Evidence remains a flat ruled list with a status icon, action label, short technical metadata and optional external receipt link. Presentation feedback uses Progress Blue while working, Completion Green on completion and Attention Red when an action needs attention. White text, a clear heading and an icon or busy indicator communicate the state alongside color.
+
+The notice has 26px padding and an 18px gap on desktop; mobile uses 18px padding and a 12px gap. Nonbusy notices have a 44px-square dismiss button. Its hover fill is translucent white, and feedback controls use a 3px white focus outline with a 3px offset. When the session is missing, an error can include a white recovery button with attention-red text and a pale hover fill. Error notices use alert semantics; progress and completion use status semantics.
+
+Busy state uses a white 16px opacity-pulse indicator lasting 1.5s. The reduced-motion media query disables animation and transitions. A negative credential test can complete successfully while rejecting the credential; preserve that explicit distinction in the message.
+
+### Operation history
+
+A native details disclosure below the session strip opens while an operation is busy and returns to its collapsed default when idle; the user can also toggle it. It uses a fine bottom rule, a 44px-minimum summary and a stone scrollable list with a maximum height of 240px, reduced to 210px on mobile. The list is keyboard focusable. Entries are newest first, with a visible time, source and outcome, and transaction links only when there is an actual hash.
+
+Source labels distinguish Demo server, Stellar Testnet and Browser-reported evidence. Never present a browser check as an onchain receipt. The explanatory copy states that private witness data is not logged. Running icons use Progress Blue, successes use Completion Green, and failed/rejected icons use Attention Red; words retain the exact outcome.
+
+### Session and expiry
+
+A ruled session strip shows a clock and live remaining time using tabular numerals. Its restart text action has a 44px minimum height and 14px text. The strip stacks on mobile, with countdown text reducing from 15px to 14px. An existing but unprepared session has an explicit finish-preparing recovery action, and a lost session can restart through the feedback recovery action.
+
+Seller authority displays a 15px expiry line tied to the deal/session lifetime, with 18px vertical margins. Buyer proof access has its own expiry indicator and explanation: it ends at the current five-minute proof-window boundary or earlier when the deal ends, independently of the underlying issuer credential. Keep these lifetimes explicit rather than presenting one countdown as every credential’s validity.
 
 ## Do's and Don'ts
 
@@ -223,6 +282,9 @@ Evidence is a flat ruled list with a status icon, action label, short technical 
 - Do keep keyboard focus visible and honor reduced-motion preferences.
 - Do retain the difference between qualification, consent and actual disclosure.
 - Do keep technical identifiers breakable and public receipt links inspectable.
+- Do reserve the approved blue, green and red feedback colors for operational feedback and history.
+- Do distinguish browser-reported checks, server actions and actual Testnet transactions.
+- Do show session recovery and explain seller-authority expiry separately from buyer proof-window expiry.
 
 ### Don't:
 

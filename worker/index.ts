@@ -172,13 +172,23 @@ type Activity = {
 };
 async function activity(env: Env, state: State, item: Activity) {
   const createdAt = Date.now();
-  await env.DB.prepare("INSERT INTO activity(session_id,payload,created_at) VALUES(?,?,?)")
-    .bind(state.id, JSON.stringify(item), createdAt).run();
+  await env.DB.prepare(
+    "INSERT INTO activity(session_id,payload,created_at) VALUES(?,?,?)",
+  )
+    .bind(state.id, JSON.stringify(item), createdAt)
+    .run();
 }
 async function activities(env: Env, state: State) {
-  const rows = await env.DB.prepare("SELECT id,payload,created_at FROM activity WHERE session_id=? ORDER BY id DESC LIMIT 100")
-    .bind(state.id).all<{ id: number; payload: string; created_at: number }>();
-  return rows.results.map(row => ({ ...JSON.parse(row.payload) as Activity, id: row.id, createdAt: row.created_at }));
+  const rows = await env.DB.prepare(
+    "SELECT id,payload,created_at FROM activity WHERE session_id=? ORDER BY id DESC LIMIT 100",
+  )
+    .bind(state.id)
+    .all<{ id: number; payload: string; created_at: number }>();
+  return rows.results.map((row) => ({
+    ...(JSON.parse(row.payload) as Activity),
+    id: row.id,
+    createdAt: row.created_at,
+  }));
 }
 async function chainStatus(state: State, b: Bundle): Promise<Status> {
   if (!state.propertyPolicy) return { ...empty };
@@ -210,7 +220,11 @@ async function snapshot(env: Env, state: State, b: Bundle) {
     ledgerTime: time,
     epoch: Math.floor(time / 300),
     proofExpires: state.signals
-      ? Math.min((Number(state.signals[5]) + 1) * 300 - 1, state.validUntil, b.rootExpires)
+      ? Math.min(
+          (Number(state.signals[5]) + 1) * 300 - 1,
+          state.validUntil,
+          b.rootExpires,
+        )
       : undefined,
     rootExpires: b.rootExpires,
     contracts: { buyer: b.buyerGate, deal: b.dealGate },
@@ -301,7 +315,9 @@ async function api(request: Request, env: Env) {
       createdAt: now(),
     };
     await env.DB.batch([
-      env.DB.prepare("DELETE FROM activity WHERE created_at<?").bind(Date.now() - 86400000),
+      env.DB.prepare("DELETE FROM activity WHERE created_at<?").bind(
+        Date.now() - 86400000,
+      ),
       env.DB.prepare("DELETE FROM events WHERE created_at<?").bind(
         now() - 86400,
       ),
@@ -313,14 +329,18 @@ async function api(request: Request, env: Env) {
         "INSERT INTO sessions(token_hash,state,expires_at) VALUES(?,?,?)",
       ).bind(await hash(token), JSON.stringify(state), state.validUntil),
     ]);
-    await activity(env, state, {label: "Private demo session created · deal expires in up to 20 minutes", outcome: "success", source: "server"});
+    await activity(env, state, {
+      label: "Private demo session created · deal expires in up to 20 minutes",
+      outcome: "success",
+      source: "server",
+    });
     return json(await snapshot(env, state, b), 201, {
       "Set-Cookie": `dp_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=1200${url.protocol === "https:" ? "; Secure" : ""}`,
     });
   }
   const { tokenHash, state } = await load(request, env);
   if (path === "/api/activity" && request.method === "GET")
-    return json({activity: await activities(env, state)});
+    return json({ activity: await activities(env, state) });
   if (path === "/api/status" && request.method === "GET")
     return json(await snapshot(env, state, b));
   if (path === "/api/dossier" && request.method === "GET") {
@@ -364,17 +384,31 @@ async function api(request: Request, env: Env) {
   const input = await body(request);
   if (path === "/api/circuit-result") {
     if (state.role !== "buyer" && state.role !== "judge")
-      throw new HttpError(403, "Switch to buyer or judge mode to report a circuit check.");
-    if ((input.scenario !== "underfunded" && input.scenario !== "expired") || Object.keys(input).some(k => k !== "scenario"))
+      throw new HttpError(
+        403,
+        "Switch to buyer or judge mode to report a circuit check.",
+      );
+    if (
+      (input.scenario !== "underfunded" && input.scenario !== "expired") ||
+      Object.keys(input).some((k) => k !== "scenario")
+    )
       throw new HttpError(400, "Choose a supported negative circuit check.");
-    const count = await env.DB.prepare("SELECT COUNT(*) AS total FROM activity WHERE session_id=? AND created_at>?")
-      .bind(state.id, Date.now() - 60000).first<{total: number}>();
-    if ((count?.total ?? 0) >= 100) throw new HttpError(429, "Too many operation reports. Please wait a minute.");
+    const count = await env.DB.prepare(
+      "SELECT COUNT(*) AS total FROM activity WHERE session_id=? AND created_at>?",
+    )
+      .bind(state.id, Date.now() - 60000)
+      .first<{ total: number }>();
+    if ((count?.total ?? 0) >= 100)
+      throw new HttpError(
+        429,
+        "Too many operation reports. Please wait a minute.",
+      );
     await activity(env, state, {
       label: `${input.scenario === "underfunded" ? "Underfunded" : "Expired"} credential rejected by the circuit. No proof or transaction was created.`,
-      outcome: "rejected", source: "browser",
+      outcome: "rejected",
+      source: "browser",
     });
-    return json({activity: await activities(env, state)});
+    return json({ activity: await activities(env, state) });
   }
   return locked(env, async () => {
     // Reload under the mutation lock so concurrent tabs cannot overwrite state.
@@ -388,16 +422,35 @@ async function api(request: Request, env: Env) {
       label: string,
     ) => {
       try {
-        const receipt = await submit(key(b, role), contract, fn, args, async (phase, hash) => {
-          await activity(env, s, {label: `${label} · ${phase}`, outcome: "running", source: "testnet", ...(hash ? {hash} : {})});
+        const receipt = await submit(
+          key(b, role),
+          contract,
+          fn,
+          args,
+          async (phase, hash) => {
+            await activity(env, s, {
+              label: `${label} · ${phase}`,
+              outcome: "running",
+              source: "testnet",
+              ...(hash ? { hash } : {}),
+            });
+          },
+        );
+        await activity(env, s, {
+          label,
+          outcome: "success",
+          source: "testnet",
+          hash: receipt.hash,
         });
-        await activity(env, s, {label, outcome: "success", source: "testnet", hash: receipt.hash});
-        return await event(env, s, {label, ...receipt});
+        return await event(env, s, { label, ...receipt });
       } catch (error) {
         await activity(env, s, {
           label: `${label} · ${error instanceof ChainRejection ? `Rejected during ${error.phase}` : "Could not confirm; check any submitted transaction before retrying"}`,
-          outcome: error instanceof ChainRejection ? "rejected" : "failed", source: "testnet",
-          ...(error instanceof ChainRejection && error.hash ? {hash: error.hash} : {}),
+          outcome: error instanceof ChainRejection ? "rejected" : "failed",
+          source: "testnet",
+          ...(error instanceof ChainRejection && error.hash
+            ? { hash: error.hash }
+            : {}),
         });
         throw error;
       }
@@ -576,7 +629,12 @@ async function api(request: Request, env: Env) {
           const label = replay
             ? "Replayed proof rejected"
             : "Forged property issuer rejected";
-          await activity(env, s, {label: `${label} during ${error.phase}${error.hash ? "" : " · No transaction submitted"}`, outcome: "rejected", source: "testnet", ...(error.hash ? {hash: error.hash} : {})});
+          await activity(env, s, {
+            label: `${label} during ${error.phase}${error.hash ? "" : " · No transaction submitted"}`,
+            outcome: "rejected",
+            source: "testnet",
+            ...(error.hash ? { hash: error.hash } : {}),
+          });
           await event(env, s, {
             label,
             outcome: "rejected",

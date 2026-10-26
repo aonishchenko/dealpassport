@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-26T01:33:29.954942+00:00",
+  "generatedAt": "2026-10-26T02:25:53.886726+00:00",
   "title": "Design System: Deal Passport",
   "extensions": {
     "colorMeta": {
@@ -129,6 +129,90 @@
           "oklch(83.57% 0.0210 100.03)",
           "oklch(95% 0.0210 100.03)"
         ]
+      },
+      "feedback-progress": {
+        "role": "semantic",
+        "displayName": "Progress Blue",
+        "tonalRamp": [
+          "oklch(15% 0.0881 251.81)",
+          "oklch(26.43% 0.0881 251.81)",
+          "oklch(37.86% 0.0881 251.81)",
+          "oklch(49.29% 0.0881 251.81)",
+          "oklch(60.71% 0.0881 251.81)",
+          "oklch(72.14% 0.0881 251.81)",
+          "oklch(83.57% 0.0881 251.81)",
+          "oklch(95% 0.0881 251.81)"
+        ]
+      },
+      "feedback-success": {
+        "role": "semantic",
+        "displayName": "Completion Green",
+        "tonalRamp": [
+          "oklch(15% 0.0683 165.95)",
+          "oklch(26.43% 0.0683 165.95)",
+          "oklch(37.86% 0.0683 165.95)",
+          "oklch(49.29% 0.0683 165.95)",
+          "oklch(60.71% 0.0683 165.95)",
+          "oklch(72.14% 0.0683 165.95)",
+          "oklch(83.57% 0.0683 165.95)",
+          "oklch(95% 0.0683 165.95)"
+        ]
+      },
+      "feedback-error": {
+        "role": "semantic",
+        "displayName": "Attention Red",
+        "tonalRamp": [
+          "oklch(15% 0.1385 17.89)",
+          "oklch(26.43% 0.1385 17.89)",
+          "oklch(37.86% 0.1385 17.89)",
+          "oklch(49.29% 0.1385 17.89)",
+          "oklch(60.71% 0.1385 17.89)",
+          "oklch(72.14% 0.1385 17.89)",
+          "oklch(83.57% 0.1385 17.89)",
+          "oklch(95% 0.1385 17.89)"
+        ]
+      },
+      "feedback-text": {
+        "role": "semantic",
+        "displayName": "White Feedback Text",
+        "tonalRamp": [
+          "oklch(15% 0.0000 0.00)",
+          "oklch(26.43% 0.0000 0.00)",
+          "oklch(37.86% 0.0000 0.00)",
+          "oklch(49.29% 0.0000 0.00)",
+          "oklch(60.71% 0.0000 0.00)",
+          "oklch(72.14% 0.0000 0.00)",
+          "oklch(83.57% 0.0000 0.00)",
+          "oklch(95% 0.0000 0.00)"
+        ]
+      },
+      "feedback-action-hover": {
+        "role": "semantic",
+        "displayName": "Recovery Hover",
+        "tonalRamp": [
+          "oklch(15% 0.0157 2.68)",
+          "oklch(26.43% 0.0157 2.68)",
+          "oklch(37.86% 0.0157 2.68)",
+          "oklch(49.29% 0.0157 2.68)",
+          "oklch(60.71% 0.0157 2.68)",
+          "oklch(72.14% 0.0157 2.68)",
+          "oklch(83.57% 0.0157 2.68)",
+          "oklch(95% 0.0157 2.68)"
+        ]
+      },
+      "operation-meta": {
+        "role": "neutral",
+        "displayName": "Operation Metadata",
+        "tonalRamp": [
+          "oklch(15% 0.0192 99.34)",
+          "oklch(26.43% 0.0192 99.34)",
+          "oklch(37.86% 0.0192 99.34)",
+          "oklch(49.29% 0.0192 99.34)",
+          "oklch(60.71% 0.0192 99.34)",
+          "oklch(72.14% 0.0192 99.34)",
+          "oklch(83.57% 0.0192 99.34)",
+          "oklch(95% 0.0192 99.34)"
+        ]
       }
     },
     "typographyMeta": {
@@ -155,6 +239,14 @@
       "label": {
         "displayName": "Action label",
         "purpose": "Tracked uppercase primary and secondary actions."
+      },
+      "feedback-body": {
+        "displayName": "Feedback body",
+        "purpose": "Presentation-readable status copy; 16px on mobile."
+      },
+      "feedback-title": {
+        "displayName": "Feedback title",
+        "purpose": "Presentation-readable status heading; 19px on mobile."
       }
     },
     "shadows": [],
@@ -167,7 +259,7 @@
       {
         "name": "working-indicator",
         "value": "working 1.5s ease-in-out infinite; opacity 1 \u2192 0.3 \u2192 1",
-        "purpose": "Busy indicator only. Disabled alongside transitions under prefers-reduced-motion: reduce."
+        "purpose": "White 16px busy indicator only. Disabled alongside transitions under prefers-reduced-motion: reduce."
       }
     ],
     "breakpoints": [
@@ -189,6 +281,11 @@
         "name": "keyboard-outline",
         "value": "2px solid var(--olive); outline-offset: 4px",
         "purpose": "Buttons, links, select and technical disclosure summary."
+      },
+      {
+        "name": "feedback-focus",
+        "value": "3px solid #fff; outline-offset: 3px",
+        "purpose": "Feedback dismiss and recovery actions on high-contrast fills."
       }
     ],
     "rampProvenance": "Tonal ramps are synthesized OKLCH visualization metadata from the shipped colors; they are not additional application tokens or an approved UI palette."
@@ -224,7 +321,7 @@
       "refersTo": "select",
       "description": "Native labeled credential selector.",
       "html": "<label class=\"ds-label\" for=\"ds-credential\">Synthetic credential</label><div class=\"ds-select-wrap\"><select id=\"ds-credential\"><option>Eligible buyer</option><option>Underfunded buyer</option></select><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></div>",
-      "css": ".ds-label{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:block;margin:0 0 10px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em}.ds-select-wrap{position:relative;max-width:470px}.ds-select-wrap select{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;appearance:none;display:block;width:100%;background:var(--stone,#f2f0ea);color:var(--ink,#1c1c19);padding:15px 42px 15px 14px;border:1px solid var(--rule,#d8d5cb);border-radius:0;font-size:13px;min-height:48px}.ds-select-wrap svg{position:absolute;right:14px;top:16px;pointer-events:none;color:var(--olive,#666352)}.ds-select-wrap select:focus-visible{outline:2px solid var(--olive,#666352);outline-offset:4px;}@media(max-width:760px){.ds-select-wrap select{font-size:16px;padding-left:12px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}"
+      "css": ".ds-label{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:block;margin:0 0 10px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.07em}.ds-select-wrap{position:relative;max-width:470px}.ds-select-wrap select{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;appearance:none;display:block;width:100%;background:var(--stone,#f2f0ea);color:var(--ink,#1c1c19);padding:15px 42px 15px 14px;border:1px solid var(--rule,#d8d5cb);border-radius:0;font-size:16px;min-height:48px}.ds-select-wrap svg{position:absolute;right:14px;top:16px;pointer-events:none;color:var(--olive,#666352)}.ds-select-wrap select:focus-visible{outline:2px solid var(--olive,#666352);outline-offset:4px;}@media(max-width:760px){.ds-select-wrap select{font-size:16px;padding-left:12px}}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}"
     },
     {
       "name": "Persona navigation",
@@ -265,6 +362,46 @@
       "description": "A square check plus text shows one satisfied room condition.",
       "html": "<div class=\"ds-requirement\"><span class=\"ds-requirement-marker\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg></span><div><strong>Buyer eligibility</strong><small>Current threshold proof</small></div></div>",
       "css": ".ds-requirement{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:flex;gap:12px;align-items:flex-start;color:var(--olive,#666352)}.ds-requirement-marker{display:flex;align-items:center;justify-content:center;width:22px;height:22px;flex-shrink:0;border:1px solid var(--olive,#666352);background:var(--olive,#666352);color:var(--paper,#fbf9f4)}.ds-requirement strong{display:block;font-size:11px;font-weight:500;line-height:1.5}.ds-requirement small{display:block;font-size:10px;color:var(--muted,#6f6c58);margin-top:3px;line-height:1.6}@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}"
+    },
+    {
+      "name": "Progress feedback",
+      "kind": "custom",
+      "refersTo": "feedback-progress",
+      "description": "Inline preview of the fixed notice; the app positions it above the viewport bottom. High-contrast operational status.",
+      "html": "<div class=\"ds-feedback\" role=\"status\"><span class=\"ds-working\"></span><div><strong>Recording the authorized reviewer\u2019s attestation\u2026</strong><p>Keep this page open. Follow each step in the live operation history.</p></div></div>",
+      "css": ".ds-feedback{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:flex;align-items:flex-start;gap:18px;padding:26px;max-height:min(44vh,360px);overflow-y:auto;border:1px solid transparent;color:#fff;background:#123d68;max-width:880px}.ds-feedback p{color:#fff;font-size:20px;line-height:1.5;margin:6px 0 0}.ds-feedback strong{font-size:23px;line-height:1.35;font-weight:650;color:#fff}.ds-feedback>div{flex:1}.ds-feedback>svg{flex-shrink:0;margin-top:3px}.ds-feedback button{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;border-radius:0;cursor:pointer;transition:background-color .18s,color .18s}.ds-dismiss{border:0;background:transparent;color:#fff;min-height:44px;width:44px;min-width:44px;padding:0;margin-left:auto;align-self:flex-start}.ds-dismiss:hover{background:#ffffff24;color:#fff}.ds-feedback :focus-visible{outline:3px solid #fff;outline-offset:3px}.ds-feedback-action{color:#8c2432;background:#fff;border:1px solid #fff;font-size:16px;margin-top:16px;padding:12px 16px;min-height:44px;gap:12px}.ds-feedback-action:hover{background:#f5e7ea;color:#8c2432}.ds-working{width:16px;height:16px;background:#fff;margin-top:8px;border-radius:50%;flex-shrink:0;animation:ds-working 1.5s ease-in-out infinite}@keyframes ds-working{0%,100%{opacity:1}50%{opacity:.3}}@media(max-width:760px){.ds-feedback{padding:18px;gap:12px;max-height:46vh}.ds-feedback p{font-size:16px}.ds-feedback strong{font-size:19px}.ds-feedback>svg{width:24px;height:24px}}@media(prefers-reduced-motion:reduce){.ds-feedback *{animation:none!important;transition:none!important}}"
+    },
+    {
+      "name": "Success feedback",
+      "kind": "custom",
+      "refersTo": "feedback-success",
+      "description": "Inline preview of the fixed notice; the app positions it above the viewport bottom. A completed test can still reject a credential.",
+      "html": "<div class=\"ds-feedback\" role=\"status\"><svg width=\"30\" height=\"30\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"m20 6-11 11-5-5\"/></svg><div><strong>Operation complete</strong><p>Underfunded credential rejected by the circuit. No proof or transaction was created. Saved in this session\u2019s operation history as a browser-reported check.</p></div><button class=\"ds-dismiss\" aria-label=\"Dismiss notification\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"m18 6-12 12M6 6l12 12\"/></svg></button></div>",
+      "css": ".ds-feedback{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:flex;align-items:flex-start;gap:18px;padding:26px;max-height:min(44vh,360px);overflow-y:auto;border:1px solid transparent;color:#fff;background:#17503c;max-width:880px}.ds-feedback p{color:#fff;font-size:20px;line-height:1.5;margin:6px 0 0}.ds-feedback strong{font-size:23px;line-height:1.35;font-weight:650;color:#fff}.ds-feedback>div{flex:1}.ds-feedback>svg{flex-shrink:0;margin-top:3px}.ds-feedback button{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;border-radius:0;cursor:pointer;transition:background-color .18s,color .18s}.ds-dismiss{border:0;background:transparent;color:#fff;min-height:44px;width:44px;min-width:44px;padding:0;margin-left:auto;align-self:flex-start}.ds-dismiss:hover{background:#ffffff24;color:#fff}.ds-feedback :focus-visible{outline:3px solid #fff;outline-offset:3px}.ds-feedback-action{color:#8c2432;background:#fff;border:1px solid #fff;font-size:16px;margin-top:16px;padding:12px 16px;min-height:44px;gap:12px}.ds-feedback-action:hover{background:#f5e7ea;color:#8c2432}.ds-working{width:16px;height:16px;background:#fff;margin-top:8px;border-radius:50%;flex-shrink:0;animation:ds-working 1.5s ease-in-out infinite}@keyframes ds-working{0%,100%{opacity:1}50%{opacity:.3}}@media(max-width:760px){.ds-feedback{padding:18px;gap:12px;max-height:46vh}.ds-feedback p{font-size:16px}.ds-feedback strong{font-size:19px}.ds-feedback>svg{width:24px;height:24px}}@media(prefers-reduced-motion:reduce){.ds-feedback *{animation:none!important;transition:none!important}}"
+    },
+    {
+      "name": "Error feedback",
+      "kind": "custom",
+      "refersTo": "feedback-error",
+      "description": "Inline preview of the fixed notice; the app positions it above the viewport bottom. High-contrast operational status.",
+      "html": "<div class=\"ds-feedback\" role=\"alert\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"m18 6-12 12M6 6l12 12\"/></svg><div><strong>Action needs attention</strong><p>Your private demo session has ended. Start a new demo session to continue.</p><button class=\"ds-feedback-action\">Start new demo session</button></div><button class=\"ds-dismiss\" aria-label=\"Dismiss notification\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" aria-hidden=\"true\"><path d=\"m18 6-12 12M6 6l12 12\"/></svg></button></div>",
+      "css": ".ds-feedback{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:flex;align-items:flex-start;gap:18px;padding:26px;max-height:min(44vh,360px);overflow-y:auto;border:1px solid transparent;color:#fff;background:#8c2432;max-width:880px}.ds-feedback p{color:#fff;font-size:20px;line-height:1.5;margin:6px 0 0}.ds-feedback strong{font-size:23px;line-height:1.35;font-weight:650;color:#fff}.ds-feedback>div{flex:1}.ds-feedback>svg{flex-shrink:0;margin-top:3px}.ds-feedback button{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:center;border-radius:0;cursor:pointer;transition:background-color .18s,color .18s}.ds-dismiss{border:0;background:transparent;color:#fff;min-height:44px;width:44px;min-width:44px;padding:0;margin-left:auto;align-self:flex-start}.ds-dismiss:hover{background:#ffffff24;color:#fff}.ds-feedback :focus-visible{outline:3px solid #fff;outline-offset:3px}.ds-feedback-action{color:#8c2432;background:#fff;border:1px solid #fff;font-size:16px;margin-top:16px;padding:12px 16px;min-height:44px;gap:12px}.ds-feedback-action:hover{background:#f5e7ea;color:#8c2432}.ds-working{width:16px;height:16px;background:#fff;margin-top:8px;border-radius:50%;flex-shrink:0;animation:ds-working 1.5s ease-in-out infinite}@keyframes ds-working{0%,100%{opacity:1}50%{opacity:.3}}@media(max-width:760px){.ds-feedback{padding:18px;gap:12px;max-height:46vh}.ds-feedback p{font-size:16px}.ds-feedback strong{font-size:19px}.ds-feedback>svg{width:24px;height:24px}}@media(prefers-reduced-motion:reduce){.ds-feedback *{animation:none!important;transition:none!important}}"
+    },
+    {
+      "name": "Live operation history",
+      "kind": "custom",
+      "refersTo": "operation-history",
+      "description": "Native disclosure; app opens it while busy and collapses its default on idle. Explicit source labels preserve evidence provenance.",
+      "html": "<section class=\"ds-history\"><details open><summary>Live operation history <span>Latest activity</span></summary><p>Testnet steps are recorded by the server. Browser checks are reported by this browser. No private witness data is logged.</p><ol tabindex=\"0\" aria-label=\"Recent operations\"><li><span class=\"ds-rejected\" aria-hidden=\"true\">\u2713</span><div><strong>Underfunded credential rejected by the circuit. No proof or transaction was created.</strong><span class=\"ds-operation-meta\">02:22:34 AM \u00b7 Browser-reported \u00b7 rejected</span></div></li></ol></details></section>",
+      "css": ".ds-history{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;color:var(--ink,#1c1c19);margin:0 0 28px;padding:18px 0;border-bottom:1px solid var(--rule,#d8d5cb)}.ds-history summary{cursor:pointer;font-size:19px;font-weight:600;min-height:44px;padding:8px 0}.ds-history summary>span{font-size:13px;font-weight:500;margin-left:12px;color:var(--olive,#666352)}.ds-history p{font-size:13px;line-height:1.8;color:var(--olive,#666352);margin:4px 0 12px}.ds-history ol{list-style:none;margin:0;padding:0 14px;max-height:240px;overflow-y:auto;scrollbar-gutter:stable;background:var(--stone,#f2f0ea)}.ds-history li{display:flex;gap:12px;padding:13px 0}.ds-rejected{flex-shrink:0;color:#8c2432;margin-top:3px}.ds-history strong{display:block;font-size:17px;font-weight:550;line-height:1.5;overflow-wrap:anywhere}.ds-operation-meta{display:block;font-size:12px;margin-top:4px;color:#565448}.ds-history summary:focus-visible{outline:2px solid var(--olive,#666352);outline-offset:4px}@media(max-width:760px){.ds-history summary{font-size:17px}.ds-history summary>span{font-size:12px;margin-left:6px}.ds-history strong{font-size:15px}.ds-operation-meta{font-size:11px}.ds-history ol{max-height:210px;padding:0 10px}}"
+    },
+    {
+      "name": "Session strip",
+      "kind": "custom",
+      "refersTo": "session-strip",
+      "description": "Live remaining time and restart action; sample countdown is illustrative.",
+      "html": "<div class=\"ds-session\"><span>Private session \u00b7 17:18 remaining</span><button>Start new demo session</button></div>",
+      "css": ".ds-session{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule,#d8d5cb);color:var(--ink,#1c1c19)}.ds-session>span{font-size:15px;font-variant-numeric:tabular-nums}.ds-session button{font-family:\"Inter Variable\",Inter,system-ui,sans-serif;display:inline-flex;align-items:center;justify-content:flex-start;min-height:44px;border:0;border-radius:0;padding:8px 0;background:transparent;font-size:14px;font-weight:500;color:var(--olive,#666352);cursor:pointer}.ds-session button:hover{color:var(--ink,#1c1c19);text-decoration:underline;text-underline-offset:5px}.ds-session button:focus-visible{outline:2px solid var(--olive,#666352);outline-offset:4px}@media(max-width:760px){.ds-session{align-items:flex-start;flex-direction:column;gap:2px}.ds-session>span{font-size:14px}}"
     }
   ],
   "narrative": {
@@ -293,7 +430,10 @@
       "Do show requirements individually and pair state color with words or icons.",
       "Do keep keyboard focus visible and honor reduced-motion preferences.",
       "Do retain the difference between qualification, consent and actual disclosure.",
-      "Do keep technical identifiers breakable and public receipt links inspectable."
+      "Do keep technical identifiers breakable and public receipt links inspectable.",
+      "Do reserve the approved blue, green and red feedback colors for operational feedback and history.",
+      "Do distinguish browser-reported checks, server actions and actual Testnet transactions.",
+      "Do show session recovery and explain seller-authority expiry separately from buyer proof-window expiry."
     ],
     "donts": [
       "Don't introduce rounded cards, gradients or drop shadows into this flat system.",
