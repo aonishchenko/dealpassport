@@ -2,6 +2,10 @@
 
 Research and limited compatibility evaluation, 26 October 2026. No application dependencies, circuits or deployments were changed.
 
+## Decision: deferred until after the MVP
+
+On 26 October 2026, Oleksiy explicitly deferred non-GPL migration until after the MVP and asked that no further implementation time be spent on it now. Keep the current proving dependencies for MVP work. The options and existing compatibility result below are a post-MVP backlog item, not an active migration. Resume evaluation and implementation only when that work is requested again. Existing third-party license obligations and disclosures remain applicable.
+
 ## Recommended direction to evaluate
 
 Move the eligibility constraints and Groth16 proving/setup into a native Rust Arkworks stack. This removes the Circom compiler and circuit-library requirement together. The existing BN254 Groth16 verification approach is the intended target; compatibility with Stellar and browser WebAssembly remains to be demonstrated with a real proof.

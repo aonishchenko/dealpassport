@@ -118,3 +118,7 @@ The baseline pairing verifier and Gnark fixtures reuse Stellar Development Found
 New event work includes the eligibility circuit, account binding, root/deal policy, serialization boundary, verification scripts and tests. ChatGPT assisted research/specification. Codex assists coding, debugging, verification and artifact preparation. Oleksiy owns product decisions, review, corrections and submission.
 
 The current pitch deck is `output/presentation/Deal_Passport_HackMeridian_Pitch_v4.pptx`. It describes the observed Testnet MVP. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md).
+
+## Post-MVP proving-stack migration
+
+Oleksiy deferred migration to non-GPL proving components on 26 October 2026. The current stack remains in use for MVP work. Candidate replacements and existing feasibility evidence are preserved in [the migration plan](docs/PROVER_MIGRATION_OPTIONS.md); no further migration implementation is planned during the MVP.
