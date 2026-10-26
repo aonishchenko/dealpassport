@@ -154,7 +154,7 @@ components:
 
 Deal Passport presents a private introduction as a calm, legible sequence of qualifications and choices. Warm paper, stone surfaces, olive typography and fine rules give the workflow the character of a carefully maintained deal ledger. Lora headings lend an editorial voice; Inter carries the compact operational detail.
 
-The visual identity is already established. This document records the implementation in src/App.tsx and src/styles.css; Deal_Passport_HackMeridian_Build_Spec.md remains the canonical product specification. State, synthetic-data disclosure and inspectable evidence shape the interface without turning technical detail into decoration.
+The visual identity is already established. This document records the implementation in src/App.tsx and src/styles.css; docs/Deal_Passport_HackMeridian_Build_Spec.md remains the canonical product specification. State, synthetic-data disclosure and inspectable evidence shape the interface without turning technical detail into decoration.
 
 **Key Characteristics:**
 

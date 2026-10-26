@@ -8,6 +8,10 @@ Private qualification for a specific real-estate deal, using issuer-bound Groth1
 
 **Live demo:** https://dealpassport.aonishchenko33.workers.dev
 
+**Demo video:** [Watch/download the walkthrough (2:37)](output/demo/Deal_Passport_Demo_Oleksiy_Final.mp4)
+
+**Build specification:** [Product and technical specification](docs/Deal_Passport_HackMeridian_Build_Spec.md)
+
 ## Production architecture
 
 Planned production design. React connects to one Cloudflare backend for buyer verification, seller authority and deal access. Private ZK proofs and Stellar/Soroban enforce qualification and consent. The plan selects Didit, Reclaim, Predial Online, ACTA and Rust/Arkworks for their respective roles; integration remains post-MVP.
@@ -27,7 +31,7 @@ Planned production design. React connects to one Cloudflare backend for buyer ve
 
 - **Gate E:** the deployed light responsive UI generated genuine proofs in the browser (2.4 and 2.6 seconds on the observed device), recorded seller authority and both consents, and fetched the protected dossier. Browser negative cases cover underfunding, expiry, forged issuer and replay. See [public browser evidence](docs/evidence/gate-e.json).
 
-The live synthetic MVP is implemented. Demo-video publication and final human submission remain outstanding. [Architecture and trust boundaries](docs/ARCHITECTURE.md).
+The live synthetic MVP and recorded walkthrough are available. The required YouTube/Vimeo submission URL and final human submission remain outstanding. [Architecture and trust boundaries](docs/ARCHITECTURE.md).
 
 ## Evidence
 
@@ -125,9 +129,9 @@ The baseline pairing verifier and Gnark fixtures reuse Stellar Development Found
 
 New event work includes the eligibility circuit, account binding, root/deal policy, serialization boundary, verification scripts and tests. ChatGPT assisted research/specification. Codex assists coding, debugging, verification and artifact preparation. Oleksiy owns product decisions, review, corrections and submission.
 
-The current [seven-slide pitch deck](output/presentation/Deal_Passport_HackMeridian_Pitch_v10.pptx) describes the implemented Testnet MVP, with AI-generated conceptual illustrations and the production target architecture on slide 6 within Step 03. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md). [Illustration assets and prompts](docs/pitch-assets/PROMPTS.md) record the generated scenes; they represent no real people, customers, properties or partnerships.
+The current [eight-slide pitch deck](output/presentation/Deal_Passport_HackMeridian_Pitch_v12.pptx) describes the implemented Testnet MVP, with AI-generated conceptual illustrations, the production target architecture on slide 6 and a planned MCP extension on slide 7 within Step 03. The MCP extension is a future concept, not an implemented feature. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md). [Illustration assets and prompts](docs/pitch-assets/PROMPTS.md) record the generated scenes; they represent no real people, customers, properties or partnerships.
 
-[Download the same presentation as PDF](output/pdf/Deal_Passport_HackMeridian_Pitch_v10.pdf).
+[Download the same presentation as PDF](output/pdf/Deal_Passport_HackMeridian_Pitch_v12.pdf).
 
 ## Post-MVP proving-stack migration
 

@@ -92,3 +92,7 @@ Replaced the six small pitch illustrations with original AI-generated 3D editori
 ## PDF presentation export — 26 October 2026
 
 Exported the same seven-slide presentation as a 10.1 MB PDF. Used 3840×2160 slide renders to preserve the approved fonts, illustrations and layout after the native PDF exporter failed on a missing bundled standard-font module. Reopened the resulting seven-page, 20×11.25-inch PDF and visually reviewed all pages. The source PPTX is unchanged. No runtime changes or deployment.
+
+## Final review materials and repository cleanup — 26 October 2026
+
+Moved the canonical build specification into docs and updated its active references. Removed the organizer template and superseded deck/PDF versions from the current repository tree. Retained the reviewed eight-slide v12 PPTX/PDF and published only the final 2:37 MP4 from the video workspace. The final narration uses Oleksiy’s approved voice treatment throughout; captions, product highlights and refreshed slides 2–3 are synchronized. The production architecture and MCP extension remain explicitly planned. Video-generation code, private rendering files, raw voice files and the one-time submission draft remain ignored. README links identify the current materials. No runtime changes or deployment.

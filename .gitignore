@@ -7,7 +7,8 @@ dist/
 target/
 .DS_Store
 .impeccable/review/
-output/demo/
+/output/demo/*
+!/output/demo/Deal_Passport_Demo_Oleksiy_Final.mp4
 .build/
 .toolchain/
 .local/

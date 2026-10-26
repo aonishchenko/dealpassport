@@ -7,7 +7,7 @@ related_targets: ["src/styles.css"]
 
 Mode: Operate. Scope: src/App.tsx and its light responsive styles.
 Audience: a buyer, seller or hackathon judge trying the synthetic two-person qualification workflow.
-Canonical product context: Deal_Passport_HackMeridian_Build_Spec.md. The user explicitly chose the approved light visual style and authorized implementation choices without a new consultation.
+Canonical product context: docs/Deal_Passport_HackMeridian_Build_Spec.md. The user explicitly chose the approved light visual style and authorized implementation choices without a new consultation.
 
 ## Direction contract
 THESIS: A private deal introduction that visibly progresses from two unqualified strangers to two consenting participants. The deal's state leads; actions live beside their consequences.
