@@ -125,7 +125,7 @@ The baseline pairing verifier and Gnark fixtures reuse Stellar Development Found
 
 New event work includes the eligibility circuit, account binding, root/deal policy, serialization boundary, verification scripts and tests. ChatGPT assisted research/specification. Codex assists coding, debugging, verification and artifact preparation. Oleksiy owns product decisions, review, corrections and submission.
 
-The current [seven-slide pitch deck](output/presentation/Deal_Passport_HackMeridian_Pitch_v9.pptx) describes the implemented Testnet MVP, with supporting illustrations and the production target architecture on slide 6 within Step 03. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md).
+The current [seven-slide pitch deck](output/presentation/Deal_Passport_HackMeridian_Pitch_v10.pptx) describes the implemented Testnet MVP, with AI-generated conceptual illustrations and the production target architecture on slide 6 within Step 03. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md). [Illustration assets and prompts](docs/pitch-assets/PROMPTS.md) record the generated scenes; they represent no real people, customers, properties or partnerships.
 
 ## Post-MVP proving-stack migration
 
