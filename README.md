@@ -127,6 +127,8 @@ New event work includes the eligibility circuit, account binding, root/deal poli
 
 The current [seven-slide pitch deck](output/presentation/Deal_Passport_HackMeridian_Pitch_v10.pptx) describes the implemented Testnet MVP, with AI-generated conceptual illustrations and the production target architecture on slide 6 within Step 03. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md). [Illustration assets and prompts](docs/pitch-assets/PROMPTS.md) record the generated scenes; they represent no real people, customers, properties or partnerships.
 
+[Download the same presentation as PDF](output/pdf/Deal_Passport_HackMeridian_Pitch_v10.pdf).
+
 ## Post-MVP proving-stack migration
 
 Oleksiy deferred migration to non-GPL proving components on 26 October 2026. The current stack remains in use for MVP work. Candidate replacements and existing feasibility evidence are preserved in [the migration plan](docs/PROVER_MIGRATION_OPTIONS.md); no further migration implementation is planned during the MVP.

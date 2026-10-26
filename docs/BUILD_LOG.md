@@ -88,3 +88,7 @@ Oleksiy requested a single planned technology per purpose and smaller boxes for 
 ## Generated narrative pitch scenes — 26 October 2026
 
 Replaced the six small pitch illustrations with original AI-generated 3D editorial scenes using the built-in image generator. The cover shows a private introduction on a completed bridge; the solution shows anonymous buyer/seller participants separated by a gap; PMF shows repeated paperwork; the comparison joins specialist expertise around one property; qualification uses a sealed briefcase balancing against a house; and the team uses a fictional solo builder at a laptop. Kept the seven-slide sequence, all factual slide copy, organizer template and editable production architecture unchanged. The new PNGs retain transparency, are embedded directly in the deck, and have their final prompts and provenance in `docs/pitch-assets/PROMPTS.md`. No generated scene represents a real customer, property, partnership or actual portrait. No runtime changes or deployment.
+
+## PDF presentation export — 26 October 2026
+
+Exported the same seven-slide presentation as a 10.1 MB PDF. Used 3840×2160 slide renders to preserve the approved fonts, illustrations and layout after the native PDF exporter failed on a missing bundled standard-font module. Reopened the resulting seven-page, 20×11.25-inch PDF and visually reviewed all pages. The source PPTX is unchanged. No runtime changes or deployment.
