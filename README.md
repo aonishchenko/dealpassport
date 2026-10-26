@@ -129,6 +129,8 @@ The current [seven-slide pitch deck](output/presentation/Deal_Passport_HackMerid
 
 [Download the same presentation as PDF](output/pdf/Deal_Passport_HackMeridian_Pitch_v10.pdf).
 
+The [Remotion demo composition](video/README.md) combines PMF and solution slides, the actual Testnet seller/buyer/consent/disclosure flow, and the post-MVP architecture plan. The narrated 1080p video runs for 2 minutes 54 seconds. Rendered video and voice audio stay local for Oleksiy’s review and submission.
+
 ## Post-MVP proving-stack migration
 
 Oleksiy deferred migration to non-GPL proving components on 26 October 2026. The current stack remains in use for MVP work. Candidate replacements and existing feasibility evidence are preserved in [the migration plan](docs/PROVER_MIGRATION_OPTIONS.md); no further migration implementation is planned during the MVP.
