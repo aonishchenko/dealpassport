@@ -1,21 +1,50 @@
-MIT License
+Deal Passport — All Rights Reserved / Limited Evaluation Permission
 
-Copyright (c) 2026 Oleksiy Onishchenko
+Copyright (c) 2026 Oleksiy Onishchenko. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+1. Scope
+This notice applies only to original Deal Passport code, documentation and
+assets owned by Oleksiy Onishchenko. It is not an open-source license.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+2. Hackathon evaluation
+HackMeridian 2026 organizers, authorized judges and reviewers may view,
+download, build and run this work solely to evaluate this submission. They
+may make temporary changes strictly necessary for that evaluation. This
+permission does not authorize reuse in another project or product.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Nothing in this notice limits rights separately granted to HackMeridian's
+organizer and event partners under the applicable event terms, including
+their rights for operating, judging and promoting the event.
+
+3. Hosted demonstration
+Visitors may execute browser-delivered code solely to interact with the
+official hosted Deal Passport demonstration. This does not grant a license
+to deploy, incorporate, distribute or otherwise reuse its source code.
+
+4. Other use requires a separate agreement
+Except for the permissions above, applicable statutory exceptions and
+rights that cannot be restricted under the hosting platform's terms, no
+permission is granted to use, copy, modify, distribute, sublicense, sell,
+deploy, provide as a service or create derivative works from this work.
+Commercial and other reuse requires a separate written license from
+Oleksiy Onishchenko, including any agreed license fees. A public repository
+does not by itself grant those permissions.
+
+5. Third-party materials and earlier grants
+Third-party components remain available under their own licenses, which
+this notice does not replace or restrict. See docs/THIRD_PARTY.md,
+licenses/, package-lock.json and Cargo.lock. In particular, the reused
+Stellar educational verifier and fixtures remain under Apache-2.0, and
+the distributed fonts remain under their respective OFL licenses.
+
+This notice does not purport to revoke rights validly granted under an
+earlier license for an earlier distributed version. Earlier repository
+revisions were published with an MIT license; this notice must not be
+interpreted as withdrawing permissions already acquired for those copies.
+
+6. Disclaimer
+THIS WORK IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE COPYRIGHT
+HOLDER IS NOT LIABLE FOR CLAIMS, DAMAGES OR OTHER LIABILITY ARISING FROM
+THIS WORK OR ITS USE.

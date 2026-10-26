@@ -2,6 +2,8 @@
 
 Private qualification for a specific real-estate deal, using issuer-bound Groth16 proofs on Stellar Testnet. EasyAI, by Oleksiy Onishchenko, for HackMeridian 2026 Genesis / Stellar Unlocked.
 
+**Copyright and reuse:** original Deal Passport work is all rights reserved, with limited HackMeridian jury evaluation permission. Reuse requires a separate written commercial license from Oleksiy Onishchenko. Public visibility is for review, not general permission to reuse. Third-party components keep their own licenses. Earlier MIT grants for earlier published versions are not revoked. See [LICENSE](LICENSE).
+
 ## Implemented and verified
 
 - **Gate A:** deployed the official educational BN254 Groth16 verifier. A genuine Gnark proof returns `true`; changing its public input returns `false`. Both were submitted as real Testnet transactions.
