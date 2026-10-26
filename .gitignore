@@ -22,3 +22,6 @@ artifacts/private/
 .dev.vars.*
 Oleksiy_Onishchenko_AI_EM_CV.pdf
 docs/HackMeridian_Submission_Draft.md
+
+# Local video authoring workspace; publish only an approved final video
+/video/
