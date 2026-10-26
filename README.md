@@ -8,13 +8,17 @@ Private qualification for a specific real-estate deal, using issuer-bound Groth1
 - **Gate B:** implemented a Circom financial eligibility circuit and a Soroban gate with an immutable verification key, an authorized synthetic financial issuer, registered credential roots, stored deal thresholds, ledger-time checks and holder/deal replay protection.
 - A genuine synthetic issuer-certified €900k credential qualifies for a €750k deal on Testnet. A genuine €400k member credential and an expired member credential cannot satisfy the circuit. Fabricated balances and false membership paths fail.
 - Testnet rejects wrong thresholds, stale epochs, noncanonical field aliases, copied proofs redirected to another account, altered deal IDs, altered proof outputs, and both identical and freshly randomized replays. Revoking a root invalidates a fresh qualification read.
+- **Gate C:** property-specific authenticated marketing-authority attestation and mutual consent. Both valid passports remain locked until both participants consent; withdrawal or property revocation locks fresh reads.
+- **Gate D:** Cloudflare Worker/D1 protected dossier API passed 17 integration checks against Testnet. Direct access, actor mismatch, forged issuer, changed deal, missing consents, replay and revoked access are rejected. See [API evidence](docs/evidence/gate-d.json).
 
-**Not implemented yet:** seller/property attestation, mutual disclosure/consent, protected dossier backend, public application and demo video. This is the verified cryptographic foundation, not the complete MVP.
+The light responsive application and browser prover are implemented and build successfully. Browser verification, public deployment and demo video are still in progress at this checkpoint.
 
 ## Evidence
 
 - [Gate A transaction record](docs/evidence/gate-a.json)
 - [Gate B transaction and rejection record](docs/evidence/gate-b.json)
+- [Gate C mutual-consent transaction record](docs/evidence/gate-c.json)
+- [Gate D API authorization and disclosure checks](docs/evidence/gate-d.json)
 - [Genuine issuer-bound qualification](https://stellar.expert/explorer/testnet/tx/623f433fe8fe01c94ab242b70ada08ac0725378eda1658c7974ebecffd2f0936)
 - [Baseline proof verification](https://stellar.expert/explorer/testnet/tx/c7f8e7291b50c6d08fad38d472251c2f9241d2ca25c175ce26f3dc7020971038)
 - [Baseline tampered-input verification](https://stellar.expert/explorer/testnet/tx/72697c646c7b43d339b6dc458b90a1e4209bfde059aba3a0d058917a747e8f91)
@@ -22,6 +26,8 @@ Private qualification for a specific real-estate deal, using issuer-bound Groth1
 Baseline verifier: `CAIS42T3EWMLDN3PUW2AWXRQMKKHPB5W7DWUHUODD7C6WHEUEMJBQGKX`.
 
 Eligibility gate: `CAVXDBDAGR3S5BNHSZFNOJIC4IUMVRSQPWABQYODMW26LS5V6DVWHHPB`.
+
+Mutual deal gate: `CCJYMPW6AIZNIR3ACK6IK2MMLDTLVGPJL2OHSKGZMYM3YWBDYYFGKKKZ`.
 
 The verification script deliberately revokes its test root at the end. The successful receipt remains evidence, while a fresh eligibility read correctly returns no active qualification afterward. Re-running generates a new synthetic root/deal.
 
@@ -44,6 +50,7 @@ The local build script also supports this machine's Homebrew Rust with installed
 ```sh
 npm run verify:testnet:baseline
 npm run verify:testnet:eligibility
+npm run verify:testnet:mutual
 ```
 
 These scripts use only the fixed Stellar Testnet RPC and verify the network passphrase before proceeding. They generate disposable local accounts and fund them through Testnet Friendbot. Private keys are stored with restricted permissions under ignored `.local/`. No production wallet, paid account, private bank data or API key is required. The scripts write public, selected evidence to `docs/evidence/` and do not print account secrets or witnesses.
@@ -51,6 +58,23 @@ These scripts use only the fixed Stellar Testnet RPC and verify the network pass
 Baseline verification must run before eligibility verification because Gate B uses its deployed verifier address. Gate B requires the compiled eligibility circuit and its matching setup. Proofs use a five-minute ledger epoch, so run the full scenario early in an epoch if the script reports insufficient time remaining.
 
 There are no required environment variables for these scripts. Network and example financial inputs are explicit in the source.
+
+### Run the demo application
+
+After deploying the three matching contracts above, prepare a private synthetic issuer bundle and the public proving artifacts:
+
+```sh
+node scripts/prepare-demo.mjs
+npx wrangler d1 migrations apply dealpassport-demo --local
+npm run build
+npm run dev
+# In another terminal:
+DEMO_URL=http://127.0.0.1:8973 npm run verify:api
+```
+
+Open `http://127.0.0.1:8973`. `prepare-demo` writes ignored `.dev.vars` and `.local/worker-secrets.json`; never publish them. The browser receives only the selected synthetic buyer witness when that session's buyer/judge requests it. Public WASM/zkey proving artifacts do not contain credential witnesses. A fresh checkout's newly generated proving key requires newly deployed matching contracts; do not mix it with the historical deployed verifier key.
+
+For an independent deployment, replace the Cloudflare account/database IDs in `wrangler.jsonc` with your own, create/apply the D1 migration remotely, upload `DEMO_BUNDLE` using `wrangler secret bulk .local/worker-secrets.json`, then deploy. The seeded issuer batch lasts 30 days; republish and upload a new bundle before expiry or after a Testnet reset. Session policies last 20 minutes, but buyer proofs last only the current five-minute epoch. Use **Start a fresh demo** after expiry.
 
 ## Statement and boundaries
 
@@ -79,7 +103,7 @@ The dependency checkpoint resolved all reported high/moderate advisories with co
 
 ## Origins and event work
 
-Oleksiy confirmed no pre-event Deal Passport code, design or asset, and no Empiro code or asset reuse. Existing professional products appear only as team experience and possible future integration context.
+Oleksiy confirmed no pre-event Deal Passport code, design or asset. During the event he subsequently requested Empiro's light palette and visual style as a reference. The new interface follows its warm paper/stone/olive palette, square controls and Inter/Lora typography. No Empiro application code, logo, photographs or customer data is imported. Inter and Lora are independently supplied by the openly licensed Fontsource packages.
 
 The baseline pairing verifier and Gnark fixtures reuse Stellar Development Foundation educational examples under Apache 2.0. See [third-party attribution](docs/THIRD_PARTY.md), [upstream license](licenses/stellar-soroban-examples-APACHE-2.0.txt), and [build log](docs/BUILD_LOG.md). Circom, circomlib, snarkjs, circomlibjs and the Stellar SDK are third-party tools/libraries, not original cryptographic inventions.
 

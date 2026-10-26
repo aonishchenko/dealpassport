@@ -10,10 +10,10 @@ const poseidon=await buildPoseidon();
 export const poseidonHash=values=>poseidon.F.toObject(poseidon(values));
 export const leaf=c=>poseidonHash([c.eligibleBalanceCents,c.holderSecret,c.credentialSalt,c.credentialExpiry,1]);
 
-export function credentialSet(epoch) {
+export function credentialSet(epoch,validForEpochs=288) {
   const credentials=[90000000n,40000000n,90000000n].map((eligibleBalanceCents,i)=>({
     eligibleBalanceCents,holderSecret:randomField(),credentialSalt:randomField(),
-    credentialExpiry:BigInt(i===2?epoch-1:epoch+288),
+    credentialExpiry:BigInt(i===2?epoch-1:epoch+validForEpochs),
   }));
   const levels=[Array.from({length:16},(_,i)=>i<credentials.length?leaf(credentials[i]):0n)];
   for(let d=0;d<4;d++){

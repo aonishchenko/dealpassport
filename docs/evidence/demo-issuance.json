@@ -1,0 +1,15 @@
+{
+  "network": "Stellar Testnet",
+  "recordedAt": "2026-10-25T23:57:19.326Z",
+  "buyerGate": "CAVXDBDAGR3S5BNHSZFNOJIC4IUMVRSQPWABQYODMW26LS5V6DVWHHPB",
+  "dealGate": "CCJYMPW6AIZNIR3ACK6IK2MMLDTLVGPJL2OHSKGZMYM3YWBDYYFGKKKZ",
+  "issuerRoot": "910453850102942394637975088155860060376481131834904747042379247720648228032",
+  "rootExpires": 1793059027,
+  "registration": {
+    "label": "publish synthetic demo credential batch",
+    "hash": "521f497024db9f6459b026b78c0c6b3caf11fcd8ee2e599759369625d45b6e21",
+    "ledger": 5389810,
+    "explorer": "https://stellar.expert/explorer/testnet/tx/521f497024db9f6459b026b78c0c6b3caf11fcd8ee2e599759369625d45b6e21",
+    "value": null
+  }
+}

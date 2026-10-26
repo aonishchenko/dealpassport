@@ -1,0 +1,18 @@
+CREATE TABLE IF NOT EXISTS sessions (
+ token_hash TEXT PRIMARY KEY,
+ state TEXT NOT NULL,
+ expires_at INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS locks (
+ name TEXT PRIMARY KEY,
+ owner TEXT NOT NULL,
+ expires_at INTEGER NOT NULL
+);
+CREATE TABLE IF NOT EXISTS events (
+ id INTEGER PRIMARY KEY AUTOINCREMENT,
+ session_id TEXT NOT NULL,
+ label TEXT NOT NULL,
+ payload TEXT NOT NULL,
+ created_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS events_session ON events(session_id,id);

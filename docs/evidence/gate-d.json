@@ -1,0 +1,150 @@
+{
+  "gate": "D",
+  "status": "passed",
+  "network": "Stellar Testnet",
+  "api": "http://127.0.0.1:8973",
+  "recordedAt": "2026-10-26T00:05:52.043Z",
+  "sessionId": "5e842d25-494f-4283-8b2c-7abdff77f10b",
+  "checks": [
+    {
+      "label": "Unauthenticated dossier request denied",
+      "passed": true
+    },
+    {
+      "label": "Cross-origin session mutation denied",
+      "passed": true
+    },
+    {
+      "label": "Missing or forged CSRF nonce denied",
+      "passed": true
+    },
+    {
+      "label": "Authenticated but unqualified dossier request denied",
+      "passed": true
+    },
+    {
+      "label": "Fresh immutable Testnet policies created",
+      "passed": true
+    },
+    {
+      "label": "Forged property issuer rejected by the contract",
+      "passed": true
+    },
+    {
+      "label": "underfunded synthetic credential cannot produce a valid witness",
+      "passed": true
+    },
+    {
+      "label": "expired synthetic credential cannot produce a valid witness",
+      "passed": true
+    },
+    {
+      "label": "Seller persona cannot request buyer private witness",
+      "passed": true
+    },
+    {
+      "label": "Proof for a different deal rejected before submission",
+      "passed": true
+    },
+    {
+      "label": "Genuine buyer proof verified through the Worker",
+      "passed": true
+    },
+    {
+      "label": "Both valid passports alone do not disclose",
+      "passed": true
+    },
+    {
+      "label": "One consent alone does not disclose",
+      "passed": true
+    },
+    {
+      "label": "Seller cannot fetch the buyer disclosure endpoint",
+      "passed": true
+    },
+    {
+      "label": "Qualified consenting buyer receives the protected synthetic dossier",
+      "passed": true
+    },
+    {
+      "label": "Used holder/deal nullifier replay rejected by contract error 11",
+      "passed": true
+    },
+    {
+      "label": "Fresh chain read denies the dossier after consent withdrawal",
+      "passed": true
+    },
+    {
+      "label": "Fresh chain read denies the dossier after property revocation",
+      "passed": true
+    }
+  ],
+  "receipts": [
+    {
+      "label": "Property authority revoked",
+      "hash": "684800ae65159400d1809ebdc478cbde7e7547b504b76b7ff91c8f23bbd2a10a",
+      "ledger": 5389912,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/684800ae65159400d1809ebdc478cbde7e7547b504b76b7ff91c8f23bbd2a10a"
+    },
+    {
+      "label": "buyer consented to disclosure",
+      "hash": "99499d2217b8f9b7c1e5b3291df9aa362eaf34a400ce2de6b2a9419a4ccdd92a",
+      "ledger": 5389910,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/99499d2217b8f9b7c1e5b3291df9aa362eaf34a400ce2de6b2a9419a4ccdd92a"
+    },
+    {
+      "label": "buyer withdrew consent",
+      "hash": "53a24605e32bed723101750ee982f59d429988a96cf0e1244260feb603bc0986",
+      "ledger": 5389909,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/53a24605e32bed723101750ee982f59d429988a96cf0e1244260feb603bc0986"
+    },
+    {
+      "label": "Replayed proof rejected",
+      "outcome": "rejected",
+      "phase": "simulation"
+    },
+    {
+      "label": "seller consented to disclosure",
+      "hash": "2857c0c5cbcad6a907ccce7a7ee4197dd4a237c54d70d8aeba992ab1178b0b9e",
+      "ledger": 5389907,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/2857c0c5cbcad6a907ccce7a7ee4197dd4a237c54d70d8aeba992ab1178b0b9e"
+    },
+    {
+      "label": "buyer consented to disclosure",
+      "hash": "a15774b298a92d812a2456eb063cbfcedbd085ca364e54f33025ff57ab5cf6d6",
+      "ledger": 5389906,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/a15774b298a92d812a2456eb063cbfcedbd085ca364e54f33025ff57ab5cf6d6"
+    },
+    {
+      "label": "Buyer proof verified on Stellar",
+      "hash": "81b9ab8be1dd12cff6dad494f021712b669a798239bb9f561b2c11eb1d1bff87",
+      "ledger": 5389905,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/81b9ab8be1dd12cff6dad494f021712b669a798239bb9f561b2c11eb1d1bff87"
+    },
+    {
+      "label": "Synthetic reviewer attests marketing authority",
+      "hash": "8a81a0dbf25f318438f922241a49b0affa86e163e4468a090a3c39fbc717ede8",
+      "ledger": 5389887,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/8a81a0dbf25f318438f922241a49b0affa86e163e4468a090a3c39fbc717ede8"
+    },
+    {
+      "label": "Forged property issuer rejected",
+      "outcome": "rejected",
+      "phase": "transaction",
+      "hash": "5bb0e7012976b61c0c63cb730695856bd49498e72213cfad4b960a2c6c50b781",
+      "explorer": "https://stellar.expert/explorer/testnet/tx/5bb0e7012976b61c0c63cb730695856bd49498e72213cfad4b960a2c6c50b781"
+    },
+    {
+      "label": "Private property policy created",
+      "hash": "8b1aefb548dedee9f5f492c9d0643e923c6f88b0a75488c221f6581c3cacf7c2",
+      "ledger": 5389884,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/8b1aefb548dedee9f5f492c9d0643e923c6f88b0a75488c221f6581c3cacf7c2"
+    },
+    {
+      "label": "€750k buyer policy created",
+      "hash": "f4255e39b58b08728669bd63753b692b1d52908bd00047008b6e68499b20eaf4",
+      "ledger": 5389883,
+      "explorer": "https://stellar.expert/explorer/testnet/tx/f4255e39b58b08728669bd63753b692b1d52908bd00047008b6e68499b20eaf4"
+    }
+  ]
+}

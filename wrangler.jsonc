@@ -1,0 +1,13 @@
+{
+ "$schema":"./node_modules/wrangler/config-schema.json",
+ "name":"dealpassport",
+ "account_id":"3550b1d16b78241182c4cb602b695110",
+ "main":"worker/index.ts",
+ "compatibility_date":"2026-10-25",
+ "compatibility_flags":["nodejs_compat"],
+ "workers_dev":true,
+ "observability":{"enabled":true,"head_sampling_rate":0.1},
+ "assets":{"directory":"./dist","binding":"ASSETS","not_found_handling":"single-page-application","run_worker_first":["/api/*"]},
+ "d1_databases":[{"binding":"DB","database_name":"dealpassport-demo","database_id":"4f2820cd-a577-43fe-a881-7978da534a01","migrations_dir":"migrations"}],
+ "secrets":{"required":["DEMO_BUNDLE"]}
+}
