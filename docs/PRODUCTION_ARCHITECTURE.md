@@ -13,7 +13,7 @@ This is the intended system after production engineering and provider onboarding
 | React interface | Buyer, seller and approved issuer portals, user wallet authorization, private credential handling and the deal room. |
 | Cloudflare backend | Workers API and provider adapters. Buyer verification validates financial credentials and manages renewal/revocation. Seller verification combines identity, property evidence and a reviewed marketing mandate. Deal access evaluates the deal rules and both consents before returning private content. D1 stores application records and audit metadata. R2 holds private documents with encryption, tenant isolation and controlled key access. |
 | External verification services | Identity provider, authorized financial evidence source, property registry evidence and a qualified reviewer. Each provides evidence for a specific claim. Approved issuers authenticate credentials after the relevant checks. |
-| Private ZK proofs | Local WebAssembly proving on the user's device. A Groth16/BN254 relation proves a trusted credential meets the stored deal threshold, is current and belongs to the authorized holder, without disclosing the amount. Rust/Arkworks is a candidate for replacing the current proving stack. |
+| Private ZK proofs | Local WebAssembly proving on the user's device. A Groth16/BN254 relation proves a trusted credential meets the stored deal threshold, is current and belongs to the authorized holder, without disclosing the amount. The plan uses Rust/Arkworks to replace the current proving stack. |
 | Stellar Mainnet / Soroban | Issuer authorization, credential roots and revocation, Groth16 proof verification, buyer/seller qualification and deal consent. Proofs and minimal public commitments stay onchain. Raw identity, bank evidence, property addresses and documents stay offchain. |
 
 The Cloudflare subareas are logical responsibilities within one backend, not a commitment to separately deployed microservices. The ZK block is a separate technical responsibility, while its private proving runtime executes locally. The backend supplies policy and credential-delivery coordination without receiving the holder secret.
@@ -26,17 +26,17 @@ The Cloudflare subareas are logical responsibilities within one backend, not a c
 4. Soroban verifies the proof, accepted issuers, seller claim, current validity and mutual consent. The backend reads current contract state before authorizing each private document response.
 5. Production renewal allows a fresh credential/proof for the same deal under a versioned expiry/replay policy. Withdrawal and revocation block later responses. They cannot recall a document already received.
 
-## Provider and technology candidates
+## Planned stack
 
-Provider names in the diagram are options, not selected partnerships or claims of completed integration.
+The architecture uses one technology per role. The choices prioritize integration effort, the Portugal-first workflow and the existing Groth16/BN254 design. They are planning decisions, not a measured claim that each product is universally fastest or cheapest. Implementation and provider onboarding remain post-MVP.
 
-| Area | Options under consideration | Selection condition |
+| Area | Selected technology | Integration requirement |
 |---|---|---|
-| Identity | [Didit](https://docs.didit.me/) or [Stripe Identity](https://docs.stripe.com/identity) | Supported users/documents, verified callback handling, privacy/retention and commercial terms. |
-| Funds evidence | Authorized bank/open-banking partner. [Reclaim](https://docs.reclaimprotocol.org/) is an optional source-evidence adapter. | Verified source coverage and a claim compatible with the issuer-bound financial circuit. No direct bank integration is assumed merely by naming Reclaim. |
-| Property authority | Official property certificate/registry evidence plus a qualified legal or licensed reviewer | Match identity to current property rights and a valid marketing mandate. No universal automated authority API is assumed. See [prior research](REAL_PROPERTY_VERIFICATION_OPTIONS.md). |
-| Credential infrastructure | [ACTA](https://acta.build/) | Evaluate issuance, anchoring/revocation and compatibility with Deal Passport's credential commitments and deal policy. |
-| Proving stack | Rust [Arkworks Groth16](https://github.com/arkworks-rs/groth16) compiled for a local WebAssembly flow | Demonstrate circuit, browser, serialization and Soroban compatibility. Review pinned licenses and audit the replacement. See [migration plan](PROVER_MIGRATION_OPTIONS.md). |
+| Identity | [Didit](https://docs.didit.me/) | Hosted identity workflows reduce custom onboarding work. Verify callbacks, supported users/documents, privacy/retention and commercial terms. |
+| Funds evidence | [Reclaim](https://docs.reclaimprotocol.org/) | Use verifiable evidence from a supported financial source. Validate the exact portal and claim before relying on it, then bind that evidence to an approved issuer's credential. Reclaim does not itself guarantee bank coverage or certify available funds. |
+| Property records | [Predial Online](https://www.predialonline.pt/PredialOnline/) | Obtain official Portuguese registry/certificate evidence for a qualified reviewer to match identity, property rights and the marketing mandate. This is a document/reviewer workflow, not a claimed automated seller-authority API. See [prior research](REAL_PROPERTY_VERIFICATION_OPTIONS.md). |
+| Credential infrastructure | [ACTA](https://acta.build/) | Implement issuance and anchoring/revocation while preserving Deal Passport's credential commitments and deal policy. |
+| Proving stack | Rust [Arkworks Groth16](https://github.com/arkworks-rs/groth16) compiled for a local WebAssembly flow | Keep constraint synthesis and proving in one Rust stack. Demonstrate browser, serialization and Soroban compatibility, review pinned licenses and audit the replacement. See [migration plan](PROVER_MIGRATION_OPTIONS.md). |
 
 The original specification also listed Fairblock as an optional future integration. It has no defined responsibility in the selected architecture, so it is not shown as a required dependency. The design includes no escrow, tokenized property or title transfer.
 

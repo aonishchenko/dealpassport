@@ -10,7 +10,7 @@ Private qualification for a specific real-estate deal, using issuer-bound Groth1
 
 ## Production architecture
 
-Target design for the production system. React connects to one Cloudflare backend for buyer verification, seller authority and deal access. Private ZK proofs and Stellar/Soroban enforce qualification and consent. External providers and the future proving stack remain subject to selection.
+Planned production design. React connects to one Cloudflare backend for buyer verification, seller authority and deal access. Private ZK proofs and Stellar/Soroban enforce qualification and consent. The plan selects Didit, Reclaim, Predial Online, ACTA and Rust/Arkworks for their respective roles; integration remains post-MVP.
 
 ![Deal Passport production target: React, Cloudflare verification backend, external evidence services, private ZK proofs and Stellar Soroban](docs/architecture-assets/dealpassport-system.svg)
 
@@ -125,7 +125,7 @@ The baseline pairing verifier and Gnark fixtures reuse Stellar Development Found
 
 New event work includes the eligibility circuit, account binding, root/deal policy, serialization boundary, verification scripts and tests. ChatGPT assisted research/specification. Codex assists coding, debugging, verification and artifact preparation. Oleksiy owns product decisions, review, corrections and submission.
 
-The current [seven-slide pitch deck](output/presentation/Deal_Passport_HackMeridian_Pitch_v7.pptx) describes the implemented Testnet MVP, with supporting illustrations and the production target architecture on slide 6 within Step 03. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md).
+The current [seven-slide pitch deck](output/presentation/Deal_Passport_HackMeridian_Pitch_v9.pptx) describes the implemented Testnet MVP, with supporting illustrations and the production target architecture on slide 6 within Step 03. Its PMF section uses the unvalidated €89/month **or** per-verification model and continues with a competitor comparison. Sources and claim boundaries are in [market context](docs/COMPETITOR_CONTEXT.md).
 
 ## Post-MVP proving-stack migration
 
