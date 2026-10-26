@@ -1,0 +1,14 @@
+{
+  "candidate": "poseidon-lite",
+  "version": "0.3.0",
+  "declaredLicense": "MIT",
+  "runtimeDependencies": 0,
+  "comparedAgainst": "circomlibjs@0.1.7 buildPoseidon",
+  "arities": [
+    2,
+    5
+  ],
+  "edgeAndRandomComparisons": 200,
+  "passed": true,
+  "scope": "Only the hash functions actually imported by our credential generation were evaluated. No application dependency or deployed code changed."
+}
