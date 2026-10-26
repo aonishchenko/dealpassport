@@ -1,5 +1,9 @@
 # Architecture and trust boundaries
 
+![Implemented Deal Passport architecture](architecture-assets/dealpassport-system.svg)
+
+[Full-size SVG](architecture-assets/dealpassport-system.svg) · [PNG](architecture-assets/dealpassport-system.png)
+
 ```mermaid
 flowchart TD
   B[Browser: synthetic buyer or seller persona] -->|HttpOnly session + CSRF nonce| W[Cloudflare Worker]

@@ -2,6 +2,10 @@
 
 Researched 26 October 2026 for the current Portugal-focused MVP. This is feasibility research; no provider account was created, no personal data was sent, and no live-verification integration was implemented.
 
+## Decision: post-MVP only
+
+On 26 October 2026, Oleksiy deferred real identity/property verification integration until after the MVP. Keep the public demo synthetic. The options below are retained as post-MVP planning context; provider onboarding, document collection and integration implementation are not active MVP work.
+
 ## Conclusion
 
 Free identity checks and free access to an already-issued property certificate can support a real pilot. No free production API was confirmed in the reviewed offers that establishes a specific Portuguese seller's authority to market a specific property end to end. Identity, property records and authority/mandate are separate evidence requirements. An identity verification or a property passport alone must not automatically grant the current `AUTHORIZED_TO_MARKET` claim.

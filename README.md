@@ -8,6 +8,12 @@ Private qualification for a specific real-estate deal, using issuer-bound Groth1
 
 **Live demo:** https://dealpassport.aonishchenko33.workers.dev
 
+## System architecture
+
+![Deal Passport implemented architecture: browser proof, Cloudflare API and D1, Stellar contracts, and protected dossier](docs/architecture-assets/dealpassport-system.svg)
+
+[Open the full-size diagram](docs/architecture-assets/dealpassport-system.svg) · [PNG version](docs/architecture-assets/dealpassport-system.png) · [Trust boundaries and expiry](docs/ARCHITECTURE.md)
+
 ## Implemented and verified
 
 - **Gate A:** deployed the official educational BN254 Groth16 verifier. A genuine Gnark proof returns `true`; changing its public input returns `false`. Both were submitted as real Testnet transactions.
@@ -122,3 +128,7 @@ The current pitch deck is `output/presentation/Deal_Passport_HackMeridian_Pitch_
 ## Post-MVP proving-stack migration
 
 Oleksiy deferred migration to non-GPL proving components on 26 October 2026. The current stack remains in use for MVP work. Candidate replacements and existing feasibility evidence are preserved in [the migration plan](docs/PROVER_MIGRATION_OPTIONS.md); no further migration implementation is planned during the MVP.
+
+## Post-MVP real-verification pilot
+
+Real seller identity and property-authority verification are deferred until after the MVP. The public demo continues to use synthetic issuers and property data. Provider options, a proposed human-reviewed pilot and required inputs are preserved in [real verification options](docs/REAL_PROPERTY_VERIFICATION_OPTIONS.md).
