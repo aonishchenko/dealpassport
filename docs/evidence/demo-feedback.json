@@ -1,0 +1,29 @@
+{
+  "verified": true,
+  "sessionId": "bf68cc89-07ab-4564-97fc-fea09c279d7a",
+  "checks": [
+    "session authentication",
+    "CSRF",
+    "allowlisted safe event fields",
+    "browser provenance",
+    "persistent negative result without transaction receipt",
+    "live pending Testnet phases",
+    "two real confirmed policy transactions",
+    "session expiry fields",
+    "unauthenticated history denied"
+  ],
+  "transactions": [
+    "1cf9e42dd868c5b53527b1640f80efd1cafa71cba1a72853507aa06a19802762",
+    "4b0454f47f461781c44d3365ae53f22702e99a5a8b88c7ba786b308e44a55573"
+  ],
+  "deployment": "97cfded5-a3b5-4068-ab9f-060255d81a64",
+  "url": "https://dealpassport.aonishchenko33.workers.dev",
+  "interfaceCommit": "ea45aa5",
+  "visualReview": "ship \u2014 scoped notifications, operation history, session recovery and expiry copy",
+  "viewports": [
+    1440,
+    390
+  ],
+  "browserProofTransaction": "4dc6110f84009ca9bf8e4d0d6cd7542fbbe9ddcca70cf5de88d5868384b74bd2",
+  "isolatedLocalExpiryRecovery": "passed; Enter activated restart and fresh policies confirmed"
+}
